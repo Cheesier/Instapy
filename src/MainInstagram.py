@@ -1,1 +1,1 @@
-print("This is the first line of our Instagram application")
+print "This is the first line of our Instagram application"
