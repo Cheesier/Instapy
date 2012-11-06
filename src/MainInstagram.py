@@ -4,6 +4,7 @@ from Filters.CFilterBrigthness import *
 from Filters.CFilterBlur import *
 from Filters.CFilterGrayscale import *
 from Filters.CFilterVignette import *
+from Filters.CFilterTest import *
 
 
 c = CImageInstagram.CImageInstagram("../pic/insta01.jpg")
@@ -24,6 +25,6 @@ c.applyFilter(f)
 c.showImage()
 """
 
-f = CFilterVignette(1)
+f = CFilterVignette(.8)
 c.applyFilter(f)
 c.showImage()

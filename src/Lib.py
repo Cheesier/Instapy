@@ -1,15 +1,12 @@
 import Image
+import math
 
 def to2d(image):
-    pix = image.getdata()
-    size = image.size
-    
-    sizeX = size[0]
     data = []
-    temp = []
-    for i in range(len(pix)):
-        temp.append(pix[i])
-        if (i != 0 and i % sizeX == 0) or i == len(pix)-1:
-            data.append([temp])
-            temp = []
+    pix = image.load()
+    for x in xrange(image.size[0]):
+        data.append([pix[x,y] for y in xrange(image.size[1])])
     return data
+
+def distanceFromPoint(x1,y1,x2,y2):
+    return math.sqrt((x1-x2)**2 + (y1-y2)**2)

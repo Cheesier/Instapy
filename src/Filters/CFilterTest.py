@@ -3,7 +3,7 @@ from CFilter import *
 import math
 import Lib
 
-class CFilterVignette(CFilter):
+class CFilterTest(CFilter):
     def __init__(self, amount=1):
         self.amount = amount
     def applyFilter(self, aImage):
