@@ -1,8 +1,7 @@
 print "This is the first line of our Instagram application"
 import CImageInstagram
 from CFilterBrigthness import *
-import CFilterBlur
-import CFilterGrayscale
+from CFilterBlur import *
 
 
 c = CImageInstagram.CImageInstagram("../pic/insta01.jpg")
