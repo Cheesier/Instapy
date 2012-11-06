@@ -4,3 +4,7 @@
 # Eclipse files, useless when having multiple users
 .project
 .pydevproject
+
+*.pyc
+
+*.pyc
