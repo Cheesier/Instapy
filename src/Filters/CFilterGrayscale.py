@@ -4,7 +4,7 @@ from CFilter import *
 class CFilterGrayscale(CFilter):
     def applyFilter(self, aImage):
         # intialize a new filtered image
-        new_image = Image.new('RGB', aImage.size) 
+        new_image = Image.new('RGB', aImage.size)
         new_image_list = []
         #get the pixels list from the original image
         pixels = aImage.getdata()
