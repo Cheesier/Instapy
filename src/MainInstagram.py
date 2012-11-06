@@ -5,9 +5,10 @@ from Filters.CFilterBlur import *
 from Filters.CFilterGrayscale import *
 from Filters.CFilterVignette import *
 from Filters.CFilterTest import *
+from Filters.CFilterColor import *
 
 
-c = CImageInstagram.CImageInstagram("../pic/insta01.jpg")
+c = CImageInstagram.CImageInstagram("../pic/girl.jpg")
 c.setDecription("This is a comment to this image")
 c.printDescription()
 
@@ -25,6 +26,8 @@ c.applyFilter(f)
 c.showImage()
 """
 
-f = CFilterVignette(.8)
-c.applyFilter(f)
+#c.applyFilter(CFilterTest())
+c.applyFilter(CFilterColor((1,0,0)))
+c.applyFilter(CFilterVignette(1))
 c.showImage()
+c.im_copy.save("../editedpic/prime.png")

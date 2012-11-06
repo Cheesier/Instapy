@@ -1,10 +1,9 @@
+import Lib
 import Image
 from CFilter import *
-import math
-import Lib
 
-class CFilterVignette(CFilter):
-    def __init__(self, amount=1):
+class CFilterColor(CFilter):
+    def __init__(self, amount=(1,1,1)):
         self.amount = amount
     def applyFilter(self, aImage):
         # intialize a new filtered image
@@ -18,23 +17,12 @@ class CFilterVignette(CFilter):
         height = len(pixels)
         width = len(pixels[0])
         
-        print height, width
-        
-        hardness = 1
-        
         for x in range(width):
             for y in range(height):
                 
-                dist = Lib.distanceFromPoint(x, y, width/2, height/2) / math.sqrt((width/2)**2 + (height/2)**2)
-                
-                r = pixels[y][x][0]*(self.amount-dist)
-                g = pixels[y][x][1]*(self.amount-dist)
-                b = pixels[y][x][2]*(self.amount-dist)
-                
-                r = int(r**hardness)
-                g = int(g**hardness)
-                b = int(b**hardness)
-                
+                r = int(pixels[y][x][0]*self.amount[0])
+                g = int(pixels[y][x][1]*self.amount[1])
+                b = int(pixels[y][x][2]*self.amount[2])
                 
                 # human eye is bad at seeing red and blue, 
                 # so we de-emphasize them
