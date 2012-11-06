@@ -1,0 +1,7 @@
+# Mac specific files
+.DS_Store
+
+# Eclipse files, useless when having multiple users
+.project
+.pydevproject
+*.pyc

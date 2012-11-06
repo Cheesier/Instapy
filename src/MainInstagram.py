@@ -24,6 +24,6 @@ c.applyFilter(f)
 c.showImage()
 """
 
-f = CFilterVignette()
+f = CFilterVignette(1)
 c.applyFilter(f)
 c.showImage()
