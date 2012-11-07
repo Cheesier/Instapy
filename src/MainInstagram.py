@@ -6,6 +6,7 @@ from Filters.CFilterGrayscale import *
 from Filters.CFilterVignette import *
 from Filters.CFilterTest import *
 from Filters.CFilterColor import *
+from Filters.CFilterPrime import *
 
 
 c = CImageInstagram.CImageInstagram("../pic/girl.jpg")
