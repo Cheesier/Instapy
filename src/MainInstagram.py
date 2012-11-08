@@ -1,5 +1,5 @@
 print "This is the first line of our Instagram application"
-import CImageInstagram
+from CImageInstagram import *
 from Filters.CFilterBrigthness import *
 from Filters.CFilterBlur import *
 from Filters.CFilterGrayscale import *
@@ -7,33 +7,25 @@ from Filters.CFilterVignette import *
 from Filters.CFilterTest import *
 from Filters.CFilterColor import *
 from Filters.CFilterPrime import *
+import time
 
 
-c = CImageInstagram.CImageInstagram("../pic/girl.jpg")
+c = CImageInstagram("../pic/girl.jpg")
 c.setDecription("This is a comment to this image")
 c.printDescription()
 
-"""
-f = CFilterGrayscale()
-c.applyFilter(f)
-c.showImage()
-
-f = CFilterBrigthness(0.5)
-c.applyFilter(f)
-c.showImage()
-
-f = CFilterBlur()
-c.applyFilter(f)
-c.showImage()
-"""
-
 filters =  [
-           CFilterPrime(),
+           CFilterColor([1,0,0]),
+           CFilterBlur(),
            CFilterVignette(1),
-           CFilterColor([0,.7,0]),
+           #CFilterPrime(),
+           #CFilterBrigthness(0.5),
+           #CFilterGrayscale(),
            ]
 
+oldtime =  time.time()
 c.applyFilter(filters)
+print time.time()-oldtime, "seconds taken for all filters"
 #c.applyFilter(CFilterVignette(1))
 c.showImage()
 c.im_copy.save("../editedpic/latest.png")
