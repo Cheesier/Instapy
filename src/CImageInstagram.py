@@ -13,8 +13,8 @@ class CImageInstagram:
     def applyFilter(self, aCFilter):
         if isinstance(aCFilter, list) and len(aCFilter) > 0:
             self.im_copy = aCFilter[0].applyFilter(self.im_copy)
+            print "added", aCFilter[0].__class__.__name__
             self.applyFilter(aCFilter[1:])
-            print "added", type(aCFilter)
         elif isinstance(aCFilter, CFilter.CFilter):
             self.im_copy = aCFilter.applyFilter(self.im_copy)
     def resetFilter(self):

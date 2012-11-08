@@ -7,6 +7,7 @@ from Filters.CFilterVignette import *
 from Filters.CFilterTest import *
 from Filters.CFilterColor import *
 from Filters.CFilterPrime import *
+from Filters.CFilterPlainBorder import *
 import time
 
 
@@ -15,8 +16,9 @@ c.setDecription("This is a comment to this image")
 c.printDescription()
 
 filters =  [
-           CFilterColor([1,0,0]),
-           CFilterBlur(),
+           #CFilterPlainBorder(25, (0,0,0)),
+           #CFilterColor([1,0,0]),
+           #CFilterBlur(),
            CFilterVignette(1),
            #CFilterPrime(),
            #CFilterBrigthness(0.5),

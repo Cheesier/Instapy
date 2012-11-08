@@ -5,10 +5,9 @@ import Lib
 import time
 
 class CFilterPrime(CFilter):
-    def __init__(self, amount=1):
-        self.amount = amount
+    def __init__(self, multiply=(0, 0, 0)):
+        self.multiply = multiply
     def applyFilter(self, aImage):
-        oldtime = time.time()
         # intialize a new filtered image
         new_image = Image.new('RGB', aImage.size)
         new_image_list = []
@@ -26,12 +25,14 @@ class CFilterPrime(CFilter):
         for x in range(width):
             for y in range(height):
                 
-                r = int(pixels[y][x][0]*self.amount)
-                g = int(pixels[y][x][1]*self.amount)
-                b = int(pixels[y][x][2]*self.amount)
+                r = int(pixels[y][x][0])
+                g = int(pixels[y][x][1])
+                b = int(pixels[y][x][2])
                 
                 if Lib.isprime(n):
-                    r=g=b=0
+                    r*= int(self.multiply[0])
+                    g*= int(self.multiply[1])
+                    b*= int(self.multiply[2])
                     p+=1
                 
                 # human eye is bad at seeing red and blue, 
@@ -42,6 +43,5 @@ class CFilterPrime(CFilter):
                 n+=1
                 
         new_image.putdata(new_image_list)
-        timetaken = time.time()-oldtime
-        print "primes:", n-p, ", out of", n , "pixels", ", it took", timetaken, "seconds"
+        print "primes:", n-p, ", out of", n , "pixels"
         return new_image

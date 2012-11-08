@@ -18,8 +18,6 @@ class CFilterVignette(CFilter):
         height = len(pixels)
         width = len(pixels[0])
         
-        print height, width
-        
         hardness = 1
         
         for x in range(width):
