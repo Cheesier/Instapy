@@ -21,7 +21,7 @@ filters =  [
            #CFilterBlur(),
            CFilterVignette(1),
            #CFilterPrime(),
-           #CFilterBrigthness(0.5),
+           #CFilterBrigthness(1),
            #CFilterGrayscale(),
            ]
 
