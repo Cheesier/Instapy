@@ -1,4 +1,5 @@
 import Image
+import CFilter
 
 class CImageInstagram:
     def __init__(self, filename=None):
@@ -10,7 +11,12 @@ class CImageInstagram:
     def printDescription(self):
         print self.desc
     def applyFilter(self, aCFilter):
-        self.im_copy = aCFilter.applyFilter(self.im_copy)
+        if isinstance(aCFilter, list) and len(aCFilter) > 0:
+            self.im_copy = aCFilter[0].applyFilter(self.im_copy)
+            self.applyFilter(aCFilter[1:])
+            print "added", type(aCFilter)
+        elif isinstance(aCFilter, CFilter.CFilter):
+            self.im_copy = aCFilter.applyFilter(self.im_copy)
     def resetFilter(self):
         self.im_copy = self.im
     def showImage(self):

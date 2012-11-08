@@ -27,8 +27,13 @@ c.applyFilter(f)
 c.showImage()
 """
 
-#c.applyFilter(CFilterTest())
-c.applyFilter(CFilterColor((1,0,0)))
-c.applyFilter(CFilterVignette(1))
+filters =  [
+           CFilterPrime(),
+           CFilterVignette(1),
+           CFilterColor([0,.7,0]),
+           ]
+
+c.applyFilter(filters)
+#c.applyFilter(CFilterVignette(1))
 c.showImage()
 c.im_copy.save("../editedpic/latest.png")
