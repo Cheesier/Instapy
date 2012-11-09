@@ -96,5 +96,5 @@ while True:
         print "lastShown:", timeNow-lastShown
         lastShown = timeNow
         
-        time.sleep(4.6)
+        time.sleep(4.8)
     n = (n+1)%len(newPics)
