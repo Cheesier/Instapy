@@ -7,6 +7,7 @@ from Filters.CFilterVignette import *
 from Filters.CFilterTest import *
 from Filters.CFilterColor import *
 from Filters.CFilterPrime import *
+from Filters.CFilterContrast import *
 from Filters.CFilterPlainBorder import *
 import time
 
@@ -19,8 +20,9 @@ filters =  [
            #CFilterPlainBorder(25, (0,0,0)),
            #CFilterColor([1,0,0]),
            #CFilterBlur(),
-           CFilterVignette(1),
+           #CFilterVignette(1),
            #CFilterPrime(),
+           CFilterContrast(),
            #CFilterBrigthness(1),
            #CFilterGrayscale(),
            #CFilterTest(),
