@@ -11,7 +11,7 @@ from Filters.CFilterPlainBorder import *
 import time
 
 
-c = CImageInstagram("../pic/girl.jpg")
+c = CImageInstagram("../pic/insta04.jpg")
 c.setDecription("This is a comment to this image")
 c.printDescription()
 
@@ -23,6 +23,7 @@ filters =  [
            #CFilterPrime(),
            #CFilterBrigthness(1),
            #CFilterGrayscale(),
+           #CFilterTest(),
            ]
 
 oldtime =  time.time()
@@ -30,4 +31,4 @@ c.applyFilter(filters)
 print time.time()-oldtime, "seconds taken for all filters"
 #c.applyFilter(CFilterVignette(1))
 c.showImage()
-c.im_copy.save("../editedpic/latest.png")
+#c.im_copy.save("../editedpic/latest.png")
