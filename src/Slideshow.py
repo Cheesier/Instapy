@@ -11,6 +11,30 @@ from Lib import *
 import threading
 import os
 import random
+from Tkinter import Tk, Canvas, Frame, BOTH, NW
+import ImageTk
+
+class ImgDisplayer(Frame):
+  
+    def __init__(self, parent):
+        Frame.__init__(self, parent)   
+         
+        self.parent = parent        
+        self.initUI()
+        
+    def initUI(self):
+      
+        self.parent.title("Slideshow")        
+        self.pack(fill=BOTH, expand=1)
+        
+        self.img = Image.open("../pic/girl.jpg")
+        self.tatras = ImageTk.PhotoImage(self.img)
+
+        canvas = Canvas(self, width=self.img.size[0]+20, 
+           height=self.img.size[1]+20)
+        canvas.create_image(10, 10, anchor=NW, image=self.tatras)
+        canvas.pack(fill=BOTH, expand=1)
+
 
 filters = [
            CFilterVignette(),
@@ -46,6 +70,16 @@ class applyFilterLoop(threading.Thread):
 filterLoop = applyFilterLoop()
 filterLoop.start()
 
+def newImage():
+    root.after(5000, newImage)
+
+# window stuff
+root = Tk()
+ex = ImgDisplayer(root)
+ex.focus()
+root.after(5000, newImage)
+root.mainloop()
+
 lastShown = time.time()
 n = 0
 
@@ -54,7 +88,9 @@ newPics = os.listdir("../slideshow")
 while True:
     if n != current:
         c = CImageInstagram("../slideshow/" + newPics[n])
-        c.showImage()
+        ex.img = c.getImage()
+        root.mainloop()
+        #c.showImage()
         
         timeNow = time.time()
         print "lastShown:", timeNow-lastShown

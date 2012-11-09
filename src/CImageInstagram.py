@@ -23,3 +23,5 @@ class CImageInstagram:
         self.im_copy.show()
     def save(self, filename):
         self.im_copy.save(filename)
+    def getImage(self):
+        return self.im_copy
