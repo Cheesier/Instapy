@@ -70,13 +70,16 @@ class applyFilterLoop(threading.Thread):
 filterLoop = applyFilterLoop()
 filterLoop.start()
 
+#init window
+root = Tk()
+ex = ImgDisplayer(root)
+
 def newImage():
+    ex.img = Image.open("../slideshow/insta01.jpg")
+    print "next image time"
     root.after(5000, newImage)
 
 # window stuff
-root = Tk()
-ex = ImgDisplayer(root)
-ex.focus()
 root.after(5000, newImage)
 root.mainloop()
 
