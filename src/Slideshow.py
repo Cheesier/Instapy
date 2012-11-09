@@ -7,6 +7,7 @@ from Filters.CFilterTest import *
 from Filters.CFilterColor import *
 from Filters.CFilterPrime import *
 from Filters.CFilterPlainBorder import *
+from Lib import *
 import os
 import random
 
@@ -19,13 +20,25 @@ filters = [
            CFilterBlur(),
            ]
 
+# Remove old images
+oldPics = os.listdir("../slideshow")
+for image in range(len(oldPics)):
+    removeImg("../slideshow/" + oldPics[image])
+
+# Add new filtered images
 pics = os.listdir("../pic")
+for image in range(len(pics)):
+    c = CImageInstagram("../pic/" + pics[image])
+    c.applyFilter(random.sample(filters, 1))
+    c.save("../slideshow/" + pics[image])
 
 lastShown = time.time()
 n = 0
+
+# Show slideshow
+newPics = os.listdir("../pic")
 while True:
-    c = CImageInstagram("../pic/" + pics[n])
-    c.applyFilter(random.sample(filters, 1))
+    c = CImageInstagram("../pic/" + newPics[n])
     c.showImage()
     
     timeNow = time.time()
@@ -33,4 +46,4 @@ while True:
     lastShown = timeNow
     
     time.sleep(1)
-    n = (n+1)%len(pics)
+    n = (n+1)%len(newPics)
