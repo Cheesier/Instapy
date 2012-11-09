@@ -9,6 +9,7 @@ from Filters.CFilterColor import *
 from Filters.CFilterPrime import *
 from Filters.CFilterContrast import *
 from Filters.CFilterPlainBorder import *
+from Filters.CFilterInvert import *
 import time
 
 
@@ -21,7 +22,8 @@ filters =  [
            #CFilterColor([1,0,0]),
            #CFilterBlur(),
            #CFilterVignette(1),
-           CFilterPrime(),
+           #CFilterPrime(),
+           #CFilterInvert(),
            #CFilterContrast(),
            #CFilterBrigthness(1),
            #CFilterGrayscale(),
