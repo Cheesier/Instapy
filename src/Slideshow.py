@@ -11,30 +11,10 @@ from Lib import *
 import threading
 import os
 import random
-from Tkinter import Tk, Canvas, Frame, BOTH, NW
+from Tkinter import Tk, Label
 import ImageTk
-
-class ImgDisplayer(Frame):
-  
-    def __init__(self, parent):
-        Frame.__init__(self, parent)   
-         
-        self.parent = parent        
-        self.initUI()
-        
-    def initUI(self):
-      
-        self.parent.title("Slideshow")        
-        self.pack(fill=BOTH, expand=1)
-        
-        self.img = Image.open("../pic/girl.jpg")
-        self.tatras = ImageTk.PhotoImage(self.img)
-
-        canvas = Canvas(self, width=self.img.size[0]+20, 
-           height=self.img.size[1]+20)
-        canvas.create_image(10, 10, anchor=NW, image=self.tatras)
-        canvas.pack(fill=BOTH, expand=1)
-
+import sys
+    
 
 filters = [
            CFilterVignette(),
@@ -47,19 +27,22 @@ filters = [
 
 # Add new filtered images
 pics = os.listdir("../pic")
+
 """
 for image in range(len(pics)):
     c = CImageInstagram("../pic/" + pics[image])
     c.applyFilter(random.sample(filters, 1))
     c.save("../slideshow/" + pics[image])
 """
-global current
+
+global current, running
 current = -1
+running = True
 
 class applyFilterLoop(threading.Thread):
     def run(self):
         p = 0
-        while True:
+        while running:
             global current
             current = p
             c = CImageInstagram("../pic/" + pics[p])
@@ -70,34 +53,67 @@ class applyFilterLoop(threading.Thread):
 filterLoop = applyFilterLoop()
 filterLoop.start()
 
-#init window
+
+"""
+Slideshow Window
+"""
+
+slides = os.listdir("../slideshow")
+global n,size
+n = 0
+size = 800,600
+
 root = Tk()
-ex = ImgDisplayer(root)
+root.geometry(str(size[0])+"x"+str(size[1]))
+panel = Label(root)
+panel.pack(side = "bottom", fill = "both", expand = "yes")
 
-def newImage():
-    ex.img = Image.open("../slideshow/insta01.jpg")
-    print "next image time"
-    root.after(5000, newImage)
+# for debug
+def callbackRight(e):
+    changePic("next")
 
-# window stuff
-root.after(5000, newImage)
+#for debug
+def callbackLeft(e):
+    changePic("prev")
+
+def autoChange():
+    changePic("next")
+    root.after(5000, autoChange)
+
+# change the id of the img to show
+def updatePos(direction):
+    print direction
+    global n
+    if direction ==  "next":
+        n = (n+1)%len(pics)
+    elif direction == "prev":
+        n = (n-1)%len(pics)
+    else:
+        raise Exception("Got invalid direction")
+    if n == current:
+        updatePos(direction)
+
+def changePic(direction):
+    global n
+    updatePos(direction)
+    img = Image.open("../slideshow/"+slides[n])
+    img = resize(img)
+    photo = ImageTk.PhotoImage(img)
+    panel.configure(image = photo)
+    panel.image = photo
+
+def resize(image):
+    width, height = image.size
+    print "width", width, size[0]
+    print "height", height, size[1]
+    print width/size[0], height/size[1]
+    return image
+
+root.after(0, autoChange) # set the initial image, no delay
+root.bind("<Right>", callbackRight) # debug key control
+root.bind("<Left>", callbackLeft) # debug key control
 root.mainloop()
 
-lastShown = time.time()
-n = 0
-
-# Show slideshow
-newPics = os.listdir("../slideshow")
-while True:
-    if n != current:
-        c = CImageInstagram("../slideshow/" + newPics[n])
-        ex.img = c.getImage()
-        root.mainloop()
-        #c.showImage()
-        
-        timeNow = time.time()
-        print "lastShown:", timeNow-lastShown
-        lastShown = timeNow
-        
-        time.sleep(4.8)
-    n = (n+1)%len(newPics)
+# Stop the program execution after the slideshow is closed
+running = False
+print "Terminating"
