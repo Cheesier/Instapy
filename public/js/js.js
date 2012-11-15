@@ -5,6 +5,7 @@ $(document).ready(function(){
     		url: '/upload',
 			cache: false,
 			datatype: 'json',
+			data: {test: 'kingen'}
 			success: function(msg){
 				console.log(msg)
 				
