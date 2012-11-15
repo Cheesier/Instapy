@@ -23,13 +23,13 @@
 				<span class="btn btn-success fileinput-button">
 					<i class="icon-plus icon-white"></i>
 					<span>Add filter to your photo</span>
-					<input type="file" name="image" multiple="">
+					<input id="fileupload" type="file" name="files[]" data-url="/upload" multiple>
 				</span>
 			</form>
 		</div>
 		<div class="container-app hide">
 			<div class="active-img">
-				
+				<img id="#active-img">
 			</div>
 			<div class="filtered-img">
 				<img src="img/loading.gif">
@@ -42,5 +42,8 @@
 	</div> <!-- /container -->
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/js.js"></script>
+	<script src="js/jquery.ui.widget.js"></script>
+	<script src="js/jquery.iframe-transport.js"></script>
+	<script src="js/jquery.fileupload.js"></script>
 </body>
 </html>

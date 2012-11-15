@@ -1,6 +1,15 @@
 $(document).ready(function(){
-	$('.fileinput-button').on('change', function() {
-    	$.ajax({
+	$('#fileupload').fileupload({
+        dataType: 'json',
+        done: function (e, data) {
+            $.each(data.result, function (index, file) {
+                $('<p/>').text(file.name).appendTo(document.body);
+            });
+        }
+    });
+	
+	/*$('.fileinput-button').on('change', function() {
+    	$('#img-form').ajax({
     		type: 'POST',
     		url: '/upload',
 			cache: false,
@@ -14,21 +23,23 @@ $(document).ready(function(){
 				alert('Nu blev det fel!');
 			}
 		});
+		//console.log('hej');
 		//showPreview(this);
 		
-    });
+    });*/
     
-	function showPreview(input) {
-		if (input.files && input.files[0]) {
+	/*function showPreview(input) {
+		console.log('test');
+		if (input.files[0]) {
 			var reader = new FileReader();
-			
+			console.log(reader);
 			reader.onload = function (e) {
-			$('.active-img')
+			$('#active-img')
 			.attr('src', e.target.result)
 			.width(150)
 			.height(200);
 			};
 			reader.readAsDataURL(input.files[0]);
 		}
-	}
+	}*/
 });
