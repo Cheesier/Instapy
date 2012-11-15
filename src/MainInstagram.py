@@ -1,19 +1,19 @@
 print "This is the first line of our Instagram application"
-from CImageInstagram import *
-from Filters.CFilterBrigthness import *
-from Filters.CFilterBlur import *
-from Filters.CFilterGrayscale import *
-from Filters.CFilterVignette import *
-from Filters.CFilterTest import *
-from Filters.CFilterColor import *
-from Filters.CFilterPrime import *
-from Filters.CFilterContrast import *
-from Filters.CFilterPlainBorder import *
-from Filters.CFilterInvert import *
+from CImageInstagram import CImageInstagram
+from Filters.CFilterBrigthness import CFilterBrigthness
+from Filters.CFilterBlur import CFilterBlur
+from Filters.CFilterGrayscale import CFilterGrayscale
+from Filters.CFilterVignette import CFilterVignette
+from Filters.CFilterTest import CFilterTest
+from Filters.CFilterColor import CFilterColor
+from Filters.CFilterPrime import CFilterPrime
+from Filters.CFilterContrast import CFilterContrast
+from Filters.CFilterPlainBorder import CFilterPlainBorder
+from Filters.CFilterInvert import CFilterInvert
 import time
 
 
-c = CImageInstagram("../pic/insta04.jpg")
+c = CImageInstagram("../pic/girl.jpg")
 c.setDecription("This is a comment to this image")
 c.printDescription()
 
