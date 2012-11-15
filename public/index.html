@@ -19,12 +19,15 @@
 		<div class="jumbotron">
 			<h1>Instapy!</h1>
 			<p class="lead">Reinventing Instagram.</p>
-			<input type="file" id="add-filer" class="btn btn-large btn-success">
-			<a id="add-filter" class="btn btn-large btn-success" href="#">Add filter to your photo</a>
+			<span class="btn btn-success fileinput-button">
+				<i class="icon-plus icon-white"></i>
+				<span>Add filter to your photo</span>
+				<input type="file" name="files[]" multiple="">
+			</span>
 		</div>
 		<hr>
 		<div class="footer">
-			<p>&copy; <a href="adamnyberg.se">Adam Nyberg</a> & Oscar Thunberg</p>
+			<p>&copy; <a href="http://adamnyberg.se">Adam Nyberg</a> & Oscar Thunberg</p>
 		</div>
 	</div> <!-- /container -->
 	<script src="js/bootstrap.min.js"></script>
