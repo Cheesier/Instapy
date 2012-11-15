@@ -19,11 +19,21 @@
 		<div class="jumbotron">
 			<h1>Instapy!</h1>
 			<p class="lead">Reinventing Instagram.</p>
-			<span class="btn btn-success fileinput-button">
-				<i class="icon-plus icon-white"></i>
-				<span>Add filter to your photo</span>
-				<input type="file" name="files[]" multiple="">
-			</span>
+			<form id="img-form" method="post" action="/api/upload">
+				<span class="btn btn-success fileinput-button">
+					<i class="icon-plus icon-white"></i>
+					<span>Add filter to your photo</span>
+					<input type="file" name="image" multiple="">
+				</span>
+			</form>
+		</div>
+		<div class="container-app hide">
+			<div class="active-img">
+				
+			</div>
+			<div class="filtered-img">
+				<img src="img/loading.gif">
+			</div>
 		</div>
 		<hr>
 		<div class="footer">

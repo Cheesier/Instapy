@@ -2,7 +2,9 @@ body {
 	padding-top: 20px;
 	padding-bottom: 40px;
 }
-
+hide{
+	display: none;
+}
 /* Custom container */
 .container-narrow {
 	margin: 0 auto;
@@ -37,7 +39,6 @@ body {
 .fileinput-button {
   position: relative;
   overflow: hidden;
-  float: left;
   margin-right: 4px;
 }
 .fileinput-button input {
