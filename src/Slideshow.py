@@ -61,7 +61,7 @@ Slideshow Window
 slides = os.listdir("../slideshow")
 global n,size
 n = 0
-size = 800,600
+size = 1280,800
 
 root = Tk()
 root.geometry(str(size[0])+"x"+str(size[1]))
@@ -104,10 +104,9 @@ def changePic(direction):
 
 def resize(image):
     width, height = image.size
-    print "width", width, size[0]
-    print "height", height, size[1]
-    print width/size[0], height/size[1]
-    return image
+    print "ratio", width/float(height)
+    ratio = max(width/float(size[0]), height/float(size[1]))
+    return image.resize((int(width/ratio), int(height/ratio)), Image.ANTIALIAS)
 
 root.after(0, autoChange) # set the initial image, no delay
 root.bind("<Right>", callbackRight) # debug key control

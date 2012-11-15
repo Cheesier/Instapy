@@ -34,9 +34,6 @@ class CFilterTest(CFilter):
                     r=g=b=0
                     p+=1
                 
-                # human eye is bad at seeing red and blue, 
-                # so we de-emphasize them
-                #v = int(r + g + b);
                 new_pixel = (r,g,b)
                 new_image_list.append(new_pixel)
                 n+=1
