@@ -15,7 +15,10 @@ def upload():
 
 @route('/api/<api>')
 def test(api):
-    return APIs[api.lower()].run("")
+    if api in APIs:
+        return APIs[api.lower()].run("")
+    else:
+        return "No such API, check documentation"
 
 @route('/')
 @route('/<filename:path>')
