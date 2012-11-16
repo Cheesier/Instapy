@@ -9,7 +9,7 @@ def upload():
     if data and data.file:
         raw = data.file.read() # This is dangerous for big files
         filename = data.filename
-        return "Hello %s! You uploaded %s (%d bytes)." % (filename, len(raw))
+        return "Hello! You uploaded %s (%d bytes)." % (filename, len(raw))
     return "Something went wrong."
 
 @route('/api/<api>')
