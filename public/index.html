@@ -15,7 +15,21 @@
     <![endif]-->
 </head>
 <body>
-	<div class="container-narrow">
+	<div id="main">
+		<h1>Upload Your Images</h1>
+		<form method="post" enctype="multipart/form-data"  action="upload.php">
+    		<input type="file" name="images" id="images" multiple />
+    		<button type="submit" id="btn">Upload Files!</button>
+    	</form>
+
+  	<div id="response"></div>
+		<ul id="image-list">
+
+		</ul>
+	</div>
+	
+	
+	<!--<div class="container-narrow">
 		<div class="jumbotron">
 			<h1>Instapy!</h1>
 			<p class="lead">Reinventing Instagram.</p>
@@ -41,9 +55,6 @@
 		</div>
 	</div> <!-- /container -->
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/js.js"></script>
-	<script src="js/jquery.ui.widget.js"></script>
-	<script src="js/jquery.iframe-transport.js"></script>
-	<script src="js/jquery.fileupload.js"></script>
+	<script src="js/upload.js"></script>
 </body>
 </html>

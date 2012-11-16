@@ -1,14 +1,12 @@
 $(document).ready(function(){
-	$('#fileupload').fileupload({
+	/*$('#fileupload').fileupload({
         dataType: 'json',
         done: function (e, data) {
-            $.each(data.result, function (index, file) {
-                $('<p/>').text(file.name).appendTo(document.body);
-            });
+            alert(data);
         }
-    });
+    });*/
 	
-	/*$('.fileinput-button').on('change', function() {
+	$('fileupload').on('change', function() {
     	$('#img-form').ajax({
     		type: 'POST',
     		url: '/upload',
@@ -17,7 +15,6 @@ $(document).ready(function(){
 			data: {test: 'kingen'},
 			success: function(msg){
 				console.log(msg)
-				
 			},
 			error: function(){
 				alert('Nu blev det fel!');
@@ -26,7 +23,7 @@ $(document).ready(function(){
 		//console.log('hej');
 		//showPreview(this);
 		
-    });*/
+    });
     
 	/*function showPreview(input) {
 		console.log('test');
