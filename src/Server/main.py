@@ -6,6 +6,7 @@ APIs = {'upload': Upload()}
 @route('/upload', method='POST')
 def upload():
     data = request.files.data
+    #print "data:", data
     if data and data.file:
         raw = data.file.read() # This is dangerous for big files
         filename = data.filename
@@ -24,4 +25,4 @@ def test(api):
 def send_static(filename='index.html'):
     return static_file(filename, root='../../public')
 
-run(host='localhost', port=8080, reloader=True)
+run(host='127.0.0.1', port=8080, reloader=True)
