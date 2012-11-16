@@ -1,5 +1,5 @@
 import Image
-from CFilter import *
+from src.CFilter import *
 
 class CFilterInvert(CFilter):
     def applyFilter(self, aImage):

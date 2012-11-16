@@ -1,6 +1,6 @@
 import Image
-from CFilter import *
-import Lib
+from src.CFilter import *
+import src.Lib
 
 class CFilterPlainBorder(CFilter):
     def __init__(self, size=25, color=(1, 1, 1)):

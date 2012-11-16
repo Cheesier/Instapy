@@ -1,5 +1,5 @@
 import Image
-from CFilter import *
+from src.CFilter import *
 
 class CFilterContrast(CFilter):
     def __init__(self, amount=1.2):

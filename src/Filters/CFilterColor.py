@@ -1,5 +1,5 @@
 import Image
-from CFilter import *
+from src.CFilter import *
 
 class CFilterColor(CFilter):
     def __init__(self, amount=(1,1,1)):

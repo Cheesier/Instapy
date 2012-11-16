@@ -23,7 +23,7 @@ def upload():
 @route('/api/<api>/<data>')
 def api(api, data=""):
     if api in APIs:
-        return APIs[api.lower()].run("")
+        return APIs[api.lower()].run(data)
     else:
         return "No such API, check documentation."
 

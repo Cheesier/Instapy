@@ -1,7 +1,7 @@
 import Image
-from CFilter import *
+from src.CFilter import *
 import math
-import Lib
+import src.Lib
 import time
 
 class CFilterTest(CFilter):

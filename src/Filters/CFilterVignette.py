@@ -1,7 +1,7 @@
 import Image
-from CFilter import *
+from src.CFilter import *
 import math
-import Lib
+import src.Lib
 
 class CFilterVignette(CFilter):
     def __init__(self, amount=1):
@@ -13,7 +13,7 @@ class CFilterVignette(CFilter):
         #get the pixels list from the original image
         #pixels = aImage.getdata()
         
-        pixels = Lib.to2d(aImage)
+        pixels = src.Lib.to2d(aImage)
         
         height = len(pixels)
         width = len(pixels[0])
@@ -23,7 +23,7 @@ class CFilterVignette(CFilter):
         for x in range(width):
             for y in range(height):
                 
-                dist = Lib.distanceFromPoint(x, y, width/2, height/2) / math.sqrt((width/2)**2 + (height/2)**2)
+                dist = src.Lib.distanceFromPoint(x, y, width/2, height/2) / math.sqrt((width/2)**2 + (height/2)**2)
                 
                 r = pixels[y][x][0]*(self.amount-dist)
                 g = pixels[y][x][1]*(self.amount-dist)
