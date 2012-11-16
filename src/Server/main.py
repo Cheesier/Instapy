@@ -1,24 +1,31 @@
-from bottle import route, run, template, request, static_file, error
+from bottle import route, run, request, static_file
 from API.Upload import Upload
+from API.Filter import Filter
+from os import path
 
-APIs = {'upload': Upload()}
+APIs = {'upload': Upload(),
+        'filter': Filter(),
+        }
 
 @route('/upload', method='POST')
 def upload():
     data = request.files.data
     #print "data:", data
     if data and data.file:
-        raw = data.file.read() # This is dangerous for big files
-        filename = data.filename
-        return "Hello! You uploaded %s (%d bytes)." % (filename, len(raw))
+        fn = path.basename(data.filename)
+        open('../../public/img/' + fn, 'wb').write(data.file.read())
+        
+        return 'The file "' + fn + '" was uploaded successfully'
     return "Something went wrong."
 
+@route('/api')
 @route('/api/<api>')
-def test(api):
+@route('/api/<api>/<data>')
+def api(api, data=""):
     if api in APIs:
         return APIs[api.lower()].run("")
     else:
-        return "No such API, check documentation"
+        return "No such API, check documentation."
 
 @route('/')
 @route('/<filename:path>')

@@ -1,8 +1,8 @@
 from BaseAPI import BaseAPI
 
 class Upload(BaseAPI):
-    def run(self, json):
-        return self.callback({'url': "test"})
+    def process(self, data):
+        return {'url': "upload files or something?"}
     
-    def callback(self, json):
-        return json
+    def callback(self, data):
+        return data
