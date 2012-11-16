@@ -5,13 +5,12 @@ APIs = {'upload': Upload()}
 
 @route('/upload', method='POST')
 def upload():
-    name = request.forms.name
     data = request.files.data
-    if name and data and data.file:
+    if data and data.file:
         raw = data.file.read() # This is dangerous for big files
         filename = data.filename
-        return "Hello %s! You uploaded %s (%d bytes)." % (name, filename, len(raw))
-    return "You missed a field."
+        return "Hello %s! You uploaded %s (%d bytes)." % (filename, len(raw))
+    return "Something went wrong."
 
 @route('/api/<api>')
 def test(api):

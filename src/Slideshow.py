@@ -35,20 +35,24 @@ for image in range(len(pics)):
     c.save("../slideshow/" + pics[image])
 """
 
-global current, running
+global current, running, timeSinceLast
 current = -1
 running = True
+timeLastFiltered = time.time()
 
 class applyFilterLoop(threading.Thread):
     def run(self):
         p = 0
+        global current, timeLastFiltered
         while running:
-            global current
             current = p
             c = CImageInstagram("../pic/" + pics[p])
             c.applyFilter(random.sample(filters, 1))
             c.save("../slideshow/" + pics[p])
             p = (p+1)%len(pics)
+            if time.time() - timeLastFiltered < 5:
+                time.sleep(time.time() - timeLastFiltered)
+            timeLastFiltered = time.time()
 
 filterLoop = applyFilterLoop()
 filterLoop.start()
