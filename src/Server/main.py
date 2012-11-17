@@ -16,8 +16,8 @@ def upload():
         fn = path.basename(data.filename)
         open('../../public/img/' + fn, 'wb').write(data.file.read())
         
-        return 'The file "' + fn + '" was uploaded successfully'
-    return "Something went wrong."
+        return 'http://localhost:8080/img/'+fn
+    return "Something went wrong"
 
 @route('/api')
 @route('/api/<api>')
@@ -33,4 +33,4 @@ def api(api, data=""):
 def send_static(filename='index.html'):
     return static_file(filename, root='../../public')
 
-run(host='127.0.0.1', port=8080, reloader=True)
+run(host='127.0.0.1', port=8080, reloader=True, debug=True)
