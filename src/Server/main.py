@@ -1,15 +1,16 @@
 from bottle import route, run, request, static_file
 from API.Upload import Upload
-from API.Filter import Filter
+#from API.Filter import Filter
 from os import path
 
 APIs = {'upload': Upload(),
-        'filter': Filter(),
+        #'filter': Filter(),
         }
 
 @route('/upload', method='POST')
 def upload():
     data = request.files.data
+    filter = request.forms.filter
     #print "data:", data
     if data and data.file:
         fn = path.basename(data.filename)

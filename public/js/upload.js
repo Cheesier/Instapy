@@ -38,6 +38,7 @@
 		}
 	
 		if (formdata) {
+			formdata.append('filter', $('#filter-select').val());
 			$.ajax({
 				url: "/upload",
 				type: "POST",
