@@ -1,5 +1,5 @@
 (function () {
-	var input = document.getElementById("images"), 
+	var input = document.getElementById("img"), 
 		formdata = false;
 
 	function showUploadedItem (source) {
@@ -13,7 +13,7 @@
 
 	if (window.FormData) {
   		formdata = new FormData();
-  		document.getElementById("btn").style.display = "none";
+  		document.getElementById("submit").style.display = "none";
 	}
 	
  	input.addEventListener("change", function (evt) {
@@ -32,7 +32,7 @@
 					reader.readAsDataURL(file);
 				}
 				if (formdata) {
-					formdata.append("images[]", file);
+					formdata.append("img", file);
 				}
 			}	
 		}
@@ -44,8 +44,11 @@
 				data: formdata,
 				processData: false,
 				contentType: false,
-				success: function (res) {
-					document.getElementById("response").innerHTML = res; 
+				success: function (data) {
+					$('<img />', { 'src': data}).prependTo('#response');
+				},
+				error: function (res) {
+					document.getElementById("response").innerHTML = 'No response'; 
 				}
 			});
 		}
