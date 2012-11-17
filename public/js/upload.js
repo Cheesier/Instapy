@@ -32,7 +32,7 @@
 					reader.readAsDataURL(file);
 				}
 				if (formdata) {
-					formdata.append("img", file);
+					formdata.append("data", file);
 				}
 			}	
 		}
@@ -45,7 +45,8 @@
 				processData: false,
 				contentType: false,
 				success: function (data) {
-					$('<img />', { 'src': data}).prependTo('#response');
+					$('#image-list').remove();
+					$('<img />', { 'src': data}).appendTo('#response');
 				},
 				error: function (res) {
 					document.getElementById("response").innerHTML = 'No response'; 
