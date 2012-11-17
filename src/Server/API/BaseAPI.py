@@ -1,7 +1,10 @@
 
 class BaseAPI:
-    def run(self, json):
+    def run(self, data):
+        return self.callback(self.process(data))
+    
+    def process(self, data):
         pass
     
-    def callback(self, json):
+    def callback(self, data):
         pass

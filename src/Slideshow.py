@@ -6,6 +6,7 @@ from Filters.CFilterVignette import *
 from Filters.CFilterTest import *
 from Filters.CFilterColor import *
 from Filters.CFilterPrime import *
+from Filters.CFilterContrast import *
 from Filters.CFilterPlainBorder import *
 from Lib import *
 import threading
@@ -21,8 +22,9 @@ filters = [
            CFilterGrayscale(),
            CFilterColor((1,0,0)),
            CFilterPrime(),
-           CFilterPlainBorder(),
+           CFilterPlainBorder((.5, .5, .5)),
            CFilterBlur(),
+           CFilterContrast(),
            ]
 
 # Add new filtered images

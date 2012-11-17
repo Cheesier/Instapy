@@ -1,5 +1,5 @@
 import Image
-from CFilter import *
+from src.CFilter import *
 
 class CFilterBrigthness(CFilter):
     def __init__(self, brightness):
