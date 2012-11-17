@@ -13,7 +13,7 @@
 
 	if (window.FormData) {
   		formdata = new FormData();
-  		document.getElementById("submit").style.display = "none";
+  		document.getElementById("btn-submit").style.display = "none";
 	}
 	
  	input.addEventListener("change", function (evt) {
