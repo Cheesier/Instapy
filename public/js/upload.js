@@ -47,10 +47,11 @@
 				contentType: false,
 				success: function (data) {
 					$('#image-list').remove();
+					$('#response').html('');
 					$('<img />', { 'src': data}).appendTo('#response');
 				},
 				error: function (res) {
-					document.getElementById("response").innerHTML = 'No response'; 
+					$('#response').html('Server Error'); 
 				}
 			});
 		}
