@@ -19,7 +19,7 @@ c.printDescription()
 
 filters =  [
            #CFilterPlainBorder(25, (0,0,0)),
-           #CFilterColor([1,0,0]),
+           CFilterColor([1,0,0]),
            #CFilterBlur(),
            #CFilterVignette(1),
            #CFilterPrime(),

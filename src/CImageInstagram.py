@@ -1,5 +1,22 @@
 import Image
-import CFilter
+from CFilter import CFilter
+from Filters.CFilterBrigthness import CFilterBrigthness
+from Filters.CFilterBlur import CFilterBlur
+from Filters.CFilterGrayscale import CFilterGrayscale
+from Filters.CFilterVignette import CFilterVignette
+from Filters.CFilterTest import CFilterTest
+from Filters.CFilterColor import CFilterColor
+from Filters.CFilterPrime import CFilterPrime
+from Filters.CFilterContrast import CFilterContrast
+from Filters.CFilterPlainBorder import CFilterPlainBorder
+from Filters.CFilterInvert import CFilterInvert
+
+global filters
+filters = {
+           'blur': CFilterBlur(),
+           'prime': CFilterPrime(),
+           'vignette': CFilterVignette(),
+           }
 
 class CImageInstagram:
     def __init__(self, filename=None):
@@ -11,12 +28,19 @@ class CImageInstagram:
     def printDescription(self):
         print self.desc
     def applyFilter(self, aCFilter):
-        if isinstance(aCFilter, list) and len(aCFilter) > 0:
+        if isinstance(aCFilter, list) and len(aCFilter) > 0 and isinstance(aCFilter[0], CFilter):
             self.im_copy = aCFilter[0].applyFilter(self.im_copy)
             print "added", aCFilter[0].__class__.__name__
             self.applyFilter(aCFilter[1:])
-        elif isinstance(aCFilter, CFilter.CFilter):
+        elif isinstance(aCFilter, CFilter):
             self.im_copy = aCFilter.applyFilter(self.im_copy)
+        elif isinstance(aCFilter, list) and len(aCFilter) > 0 and isinstance(aCFilter[0], str):
+            self.applyFilter(filters[aCFilter[0]])
+            self.applyFilter(aCFilter[1:])
+        elif isinstance(aCFilter, str):
+            if aCFilter in filters:
+                self.im_copy = filters[aCFilter].applyFilter(self.im_copy)
+            
     def resetFilter(self):
         self.im_copy = self.im
     def showImage(self):

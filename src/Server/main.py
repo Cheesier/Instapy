@@ -1,20 +1,11 @@
 from bottle import route, run, request, static_file
+from Filters.CFilterBlur import CFilterBlur
+from Filters.CFilterPrime import CFilterPrime
+from Filters.CFilterVignette import CFilterVignette
 from API.Upload import Upload
 from API.Filter import Filter
-from Filters.CFilterBlur import *
-from Filters.CFilterPrime import *
-from Filters.CFilterVignette import *
 from CImageInstagram import *
 from os import path
-
-# PROTOTYPE
-global filters
-filters = {
-           'blur': CFilterBlur(),
-           'prime': CFilterPrime(),
-           'vignette': CFilterVignette(),
-                  }
-# END PROTOTYPE
 
 APIs = {'upload': Upload(),
         'filter': Filter(),
@@ -29,15 +20,8 @@ def upload():
         fn = path.basename(data.filename)
         open('../../public/tmp/' + fn, 'wb').write(data.file.read())
         
-        #prototype
-        c = CImageInstagram('../../public/tmp/' + fn)
-        if filtername in filters:
-            c.applyFilter(filters[filtername])
-            c.im_copy.save('../../public/tmp/' + filtername + '_' + fn)
-        #end of proto
-        
         return {'org': 'http://localhost:8080/tmp/'+fn,
-                'filtered': 'http://localhost:8080/tmp/'+filtername+'_'+fn}
+                'filtered': api("filter", filtername)}
     return "Something went wrong"
 
 @route('/api')
