@@ -48,7 +48,7 @@
 				success: function (data) {
 					$('#image-list').remove();
 					$('#response').html('');
-					$('<img />', { 'src': data}).appendTo('#response');
+					$('<img />', { 'src': data.filtered}).appendTo('#response');
 				},
 				error: function (res) {
 					$('#response').html('Server Error'); 
