@@ -1,6 +1,6 @@
 from bottle import route, run, request, static_file
 from API.Upload import Upload
-#from API.Filter import Filter
+from API.Filter import Filter
 from Filters.CFilterBlur import *
 from Filters.CFilterPrime import *
 from Filters.CFilterVignette import *
@@ -17,7 +17,7 @@ filters = {
 # END PROTOTYPE
 
 APIs = {'upload': Upload(),
-        #'filter': Filter(),
+        'filter': Filter(),
         }
 
 @route('/upload', method='POST')
@@ -43,7 +43,7 @@ def upload():
 @route('/api')
 @route('/api/<api>')
 @route('/api/<api>/<data>')
-def api(api, data=""):
+def api(api, data):
     if api in APIs:
         return APIs[api.lower()].run(data)
     else:

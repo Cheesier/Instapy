@@ -6,6 +6,7 @@ from CImageInstagram import CImageInstagram
 import os
 
 class Filter(BaseAPI):
+    
     global filters
     filters = {
                    'blur': CFilterBlur(),
