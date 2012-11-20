@@ -14,7 +14,7 @@ class Filter(BaseAPI):
                   }
     
     def process(self, data):
-        path = "../../public/img/"
+        path = "../../public/tmp/"
         filename = "girl.jpg"
         
         if os.path.exists(path + data + "_" + filename):
@@ -29,7 +29,7 @@ class Filter(BaseAPI):
             return {'error': "no such filter"}
     
     def getUrl(self, filename, data):
-        return "http://localhost:8080/img/" + data + "_" + filename
+        return "http://localhost:8080/tmp/" + data + "_" + filename
     
     def genReturn(self, path):
         return {'url': path}
