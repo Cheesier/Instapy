@@ -43,6 +43,7 @@ hide{
   position: relative;
   overflow: hidden;
   margin-right: 4px;
+  height: 52px;
 }
 .fileinput-button input {
   position: absolute;
