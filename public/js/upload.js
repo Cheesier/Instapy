@@ -3,12 +3,10 @@
 		formdata = false;
 
 	function showUploadedItem (source) {
-  		var list = document.getElementById("image-list"),
-	  		li   = document.createElement("li"),
+  		var preview = $("#preview-org"),
 	  		img  = document.createElement("img");
   		img.src = source;
-  		li.appendChild(img);
-		list.appendChild(li);
+		preview.append(img);
 	}   
 
 	if (window.FormData) {
