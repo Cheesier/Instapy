@@ -5,6 +5,9 @@ body {
 hide{
 	display: none;
 }
+.img-container{
+	width: 600px;
+}
 /* Custom container */
 .container-narrow {
 	margin: 0 auto;

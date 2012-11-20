@@ -15,7 +15,7 @@
     <![endif]-->
 </head>
 <body>
-	<div id="main">
+	<div id="main" class="container-narrow">
 		<h1>Upload Your Images</h1>
 		<form id="upload-form" method="post" enctype="multipart/form-data"  action="/upload">
 			<select id="filter-select" name="filter-select">
@@ -29,13 +29,12 @@
     		<button type="submit" id="btn-submit">Upload Files!</button>
     	</form>
 
-  	<div id="response"></div>
-		<ul id="image-list">
-
-		</ul>
-	</div>
-	<div id="preview-org">
-		<h3>Orginal image</h3>
+	  	<div id="response" class="img-container">
+		  	
+	  	</div>
+		<div id="preview-org" class="img-container">
+			<h3>Orginal image</h3>
+		</div>
 	</div>
 	
 	
