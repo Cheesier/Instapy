@@ -1,4 +1,4 @@
-from src.CFilter import *
+from CFilter import *
 from ImageFilter import *
 
 class CFilterBlur(CFilter):

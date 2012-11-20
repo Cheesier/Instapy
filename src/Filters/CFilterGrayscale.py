@@ -1,5 +1,5 @@
 import Image
-from src.CFilter import *
+from CFilter import *
 
 class CFilterGrayscale(CFilter):
     def applyFilter(self, aImage):

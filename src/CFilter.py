@@ -1,4 +1,4 @@
-import src.Lib
+import Lib
 
 class CFilter:
     pass # empty class, abstract

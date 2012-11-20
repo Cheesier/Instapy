@@ -1,8 +1,8 @@
 from BaseAPI import BaseAPI
-from src.Filters.CFilterBlur import CFilterBlur
-from src.Filters.CFilterPrime import CFilterPrime
-from src.Filters.CFilterVignette import CFilterVignette
-from src.CImageInstagram import CImageInstagram
+from Filters.CFilterBlur import CFilterBlur
+from Filters.CFilterPrime import CFilterPrime
+from Filters.CFilterVignette import CFilterVignette
+from CImageInstagram import CImageInstagram
 import os
 
 class Filter(BaseAPI):

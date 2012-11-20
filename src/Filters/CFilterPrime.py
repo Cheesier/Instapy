@@ -1,7 +1,7 @@
 import Image
-from src.CFilter import *
+from CFilter import *
 import math
-import src.Lib
+import Lib
 import time
 
 class CFilterPrime(CFilter):
@@ -14,7 +14,7 @@ class CFilterPrime(CFilter):
         #get the pixels list from the original image
         pixels = aImage.getdata()
         
-        primes = src.Lib.primes
+        primes = Lib.primes
         prime = 0
         
         n = 0

@@ -1,10 +1,10 @@
 from bottle import route, run, request, static_file
 from API.Upload import Upload
 #from API.Filter import Filter
-from src.Filters.CFilterBlur import *
-from src.Filters.CFilterPrime import *
-from src.Filters.CFilterVignette import *
-from src.CImageInstagram import *
+from Filters.CFilterBlur import *
+from Filters.CFilterPrime import *
+from Filters.CFilterVignette import *
+from CImageInstagram import *
 from os import path
 
 # PROTOTYPE
