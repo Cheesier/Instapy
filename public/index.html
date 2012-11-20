@@ -16,24 +16,32 @@
 </head>
 <body>
 	<div id="main" class="container-narrow">
-		<h1>Upload Your Images</h1>
-		<form id="upload-form" method="post" enctype="multipart/form-data"  action="/upload">
-			<select id="filter-select" name="filter-select">
-				<option value="vignette">Vignette</option>
-				<option value="blur">Blur</option>
-				<option value="prime">Prime</option>
-				<option value="invert">Invert</option>
-				<option value="plainborder">Plain Border</option>
-			</select>
-    		<input type="file" name="img" id="img" multiple />
-    		<button type="submit" id="btn-submit">Upload Files!</button>
-    	</form>
-
-	  	<div id="response" class="img-container">
-		  	
-	  	</div>
-		<div id="preview-org" class="img-container">
-			<h3>Orginal image</h3>
+		<div class="jumbotron">
+			<h1>Instapy</h1>
+			<form id="upload-form" method="post" enctype="multipart/form-data"  action="/upload">
+				<select id="filter-select" name="filter-select" class="input">
+					<option value="vignette">Vignette</option>
+					<option value="blur">Blur</option>
+					<option value="prime">Prime</option>
+					<option value="invert">Invert</option>
+					<option value="plainborder">Plain Border</option>
+				</select>
+				<br>
+				<span class="btn btn-success fileinput-button">
+					<i class="icon-plus icon-white"></i>
+                	<span>Pick Image</span>
+                	<input type="file" name="img" id="img" class="input" multiple />
+                </span>
+	    		<button type="submit" id="btn-submit">Upload Files!</button>
+	    	</form>
+	
+		  	<div id="response" class="img-container">
+		  		<h3>Filtered image</h3>
+			  	<img src="img/loading.gif" class="hide" id="loading-gif">
+		  	</div>
+			<div id="preview-org" class="img-container">
+				<h3>Orginal image</h3>
+			</div>
 		</div>
 	</div>
 	
