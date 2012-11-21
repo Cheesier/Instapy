@@ -1,38 +1,31 @@
 from BaseAPI import BaseAPI
-#from Filters.CFilterBlur import CFilterBlur
-#from Filters.CFilterPrime import CFilterPrime
-#from Filters.CFilterVignette import CFilterVignette
 from CImageInstagram import CImageInstagram
 import os
 
-"""
-global filters
-filters = {
-           'blur': CFilterBlur(),
-           'prime': CFilterPrime(),
-           'vignette': CFilterVignette(),
-           }
-"""
-
 class Filter(BaseAPI):
     
-    def process(self, data):
+    def process(self, filename="girl.jpg", filtername="blur"):
         path = "../../public/tmp/"
-        filename = "girl.jpg"
         
-        #if os.path.exists(path + data + "_" + filename):
-        #    return self.genReturn(self.getUrl(filename, data))
+        # check if processed already, in that case just toss the url back
+        if os.path.exists(path + filtername + "_" + filename):
+            return 'http://localhost:8080/tmp/' + filtername + "_" + filename
+        
+        # is the said file actually uploaded?
+        elif not os.path.exists(path + filename):
+            return self.retError("The file '{0}' is not uploaded to the server.".format(filename))
+        
         
         c = CImageInstagram(path + filename)
-        c.applyFilter(data)
-        c.save(path + data + '_' + filename)
-        return self.getUrl(filename, data.lower())
+        c.applyFilter(filtername)
+        if c.isChanged():
+            c.save(path + filtername + '_' + filename)
+            return self.getUrl(filename, filtername.lower())
+        else:
+            return self.retError("No filter with that name, consult documentation.")
     
     def getUrl(self, filename, data):
         return "http://localhost:8080/tmp/" + data + "_" + filename
     
-    def genReturn(self, path):
-        return {'url': path}
-    
-    def callback(self, data):
-        return data
+    def retError(self, msg):
+        return {'Error': msg}

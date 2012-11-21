@@ -2,7 +2,7 @@ import Image
 from CFilter import *
 
 class CFilterBrigthness(CFilter):
-    def __init__(self, brightness):
+    def __init__(self, brightness=1):
         self.brightness = brightness
     def applyFilter(self, aImage):    
         #define the brightness factor

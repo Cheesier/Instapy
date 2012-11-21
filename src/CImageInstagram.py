@@ -16,6 +16,12 @@ filters = {
            'blur': CFilterBlur(),
            'prime': CFilterPrime(),
            'vignette': CFilterVignette(),
+           'invert': CFilterInvert(),
+           'color': CFilterColor(),
+           'contrast': CFilterContrast(),
+           'plainborder': CFilterPlainBorder(),
+           'brigthness': CFilterBrigthness(),
+           'grayscale': CFilterGrayscale(),
            }
 
 class CImageInstagram:
@@ -40,7 +46,8 @@ class CImageInstagram:
         elif isinstance(aCFilter, str):
             if aCFilter in filters:
                 self.im_copy = filters[aCFilter].applyFilter(self.im_copy)
-            
+    def isChanged(self):
+        return self.im_copy != self.im
     def resetFilter(self):
         self.im_copy = self.im
     def showImage(self):
