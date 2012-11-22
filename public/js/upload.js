@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	hideLoading();
 	var formdata = false;
 
 	function showUploadedItem (source) {
@@ -12,7 +13,7 @@ $(document).ready(function() {
 	
  	$('input').on('change', function(){
  		$('#upload-form').slideUp('slow');
- 		$('#img-container').slideDown('slow');
+ 		showLoading();
  		var i = 0, len = this.files.length, img, reader, file;
  		if(len > 0){
 			for ( ; i < len; i++ ) {
@@ -41,9 +42,8 @@ $(document).ready(function() {
 					processData: false,
 					contentType: false,
 					success: function (data) {
-						$('#img-container').html('');
-						$('#img-toggle').fadeIn('slow');
-						addImg({ 'src': data.filtered, 'id': 'img-filtered', 'class': 'img-instapy'})
+						addImg({ 'src': data.filtered, 'id': 'img-filtered', 'class': 'img-instapy'});
+						hideLoading();
 					},
 					error: function (data) {
 						$('#img-container').html('Server Error'); 
@@ -53,21 +53,41 @@ $(document).ready(function() {
 		}
 	});
 	
-	// Show original image
+	// Upload new image
+	$('#img-new').on('click', function(){
+		newImg();
+	});
+	
+	// Toggle between original and filtered image
 	$('#img-toggle').on('click', function(){
 		toggleImg();
-		
 	});
 	
 	// Adds image to img list and if 'show' == true shows image
 	function addImg(props, show)
 	{
 		show = (typeof show === "undefined") ? true : show;
+		
+		$('#img-toggle').removeClass('hide');
+		$('#img-new').removeClass('hide');
+		$('#img-toggle').prop('disabled', false);
+		$('#img-new').prop('disabled', false);
+		
 		$('<img />', props).appendTo('#img-list');
 		if (show){
-			$('#img-container').html('');
+			$('#img-container').empty();
 			$('<img />', props).appendTo('#img-container');
 		}
+		$('#img-container').fadeIn();
+	}
+	
+	function newImg()
+	{
+		$('#img-toggle').prop('disabled', true);
+		$('#img-new').prop('disabled', true);
+		$('#img-list').empty();
+		$('#img-container').fadeOut();
+		$('#upload-form').slideDown('slow');
 	}
 	
 	function toggleImg()
@@ -76,12 +96,21 @@ $(document).ready(function() {
 		$('#img-container').html('');
 		if (curImg.prop('id') == 'img-filtered'){
 			$('#img-list #img-original').clone().appendTo("#img-container");
-			$('#img-toggle').text('Show filtered image');
+			$('#img-toggle').text('Show filtered');
 		}else if (curImg.prop('id') == 'img-original'){
 			$('#img-list #img-filtered').clone().appendTo("#img-container");
-			$('#img-toggle').text('Show original image');
+			$('#img-toggle').text('Show original');
 		}else{
 			$('#img-container').html('Error when toggle image.');
 		}
+	}
+	
+	function showLoading()
+	{
+		$('#loading-gif').show();
+	}
+	function hideLoading()
+	{
+		$('#loading-gif').hide();
 	}
 });
