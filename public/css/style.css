@@ -5,8 +5,11 @@ body {
 hide{
 	display: none;
 }
-.img-container{
+#img-container{
 	width: 600px;
+}
+#img-container .img-instapy{
+	width: 100%;
 }
 /* Custom container */
 .container-narrow {
@@ -43,10 +46,10 @@ hide{
   position: relative;
   overflow: hidden;
   margin-right: 4px;
-  height: 52px;
 }
 .fileinput-button input {
   position: absolute;
+    height: 52px;
   top: 0;
   right: 0;
   margin: 0;

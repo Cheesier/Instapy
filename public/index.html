@@ -20,14 +20,14 @@
 			<h1>Instapy</h1>
 			<form id="upload-form" method="post" enctype="multipart/form-data"  action="/upload">
 				<select id="filter-select" name="filter-select" class="input">
-					<option value="vignette">Vignette</option>
 					<option value="blur">Blur</option>
-					<option value="prime">Prime</option>
 					<option value="invert">Invert</option>
 					<option value="plainborder">Plain Border</option>
+					<option value="prime">Prime</option>
+					<option value="vignette">Vignette</option>
 				</select>
 				<br>
-				<span class="btn btn-success fileinput-button">
+				<span class="btn btn-success btn-block fileinput-button">
 					<i class="icon-plus icon-white"></i>
                 	<span>Pick Image</span>
                 	<input type="file" name="img" id="img" class="input" multiple />
@@ -35,42 +35,18 @@
 	    		<button type="submit" id="btn-submit">Upload Files!</button>
 	    	</form>
 	
-		  	<div id="response" class="img-container">
-		  		<h3>Filtered image</h3>
-			  	<img src="img/loading.gif" class="hide" id="loading-gif">
+		  	<div id="img-container" class="hide">
+			  	<img src="img/loading.gif" id="loading-gif"> Loading ...
 		  	</div>
-			<div id="preview-org" class="img-container">
-				<h3>Orginal image</h3>
-			</div>
-		</div>
-	</div>
-	
-	
-	<!--<div class="container-narrow">
-		<div class="jumbotron">
-			<h1>Instapy!</h1>
-			<p class="lead">Reinventing Instagram.</p>
-			<form id="img-form" method="post" action="/api/upload">
-				<span class="btn btn-success fileinput-button">
-					<i class="icon-plus icon-white"></i>
-					<span>Add filter to your photo</span>
-					<input id="fileupload" type="file" name="files[]" data-url="/upload" multiple>
-				</span>
-			</form>
-		</div>
-		<div class="container-app hide">
-			<div class="active-img">
-				<img id="#active-img">
-			</div>
-			<div class="filtered-img">
-				<img src="img/loading.gif">
-			</div>
+		  	<br>
+		  	<button id="img-toggle" class="btn btn-block hide">Show original image</button>
 		</div>
 		<hr>
 		<div class="footer">
 			<p>&copy; <a href="http://adamnyberg.se">Adam Nyberg</a> & Oscar Thunberg</p>
 		</div>
-	</div> <!-- /container -->
+	</div>
+	<div id="img-list" class="hide"></div>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/upload.js"></script>
 </body>
