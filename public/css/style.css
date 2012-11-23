@@ -19,7 +19,10 @@ body{
 	height: auto;
 }
 #img-list{
+	margin-top: 5px;
 	height: 80px;
+	overflow:auto;
+	white-space: nowrap;
 }
 .img-instapy{
 	height: 100%;

@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	hideLoading();
-	var formdata = false, available = {};
+	var formdata = false, imgName;
 
-	function showUploadedItem (source, name) {
-		addImg({ 'src': source, 'id': name, 'class': 'img-instapy'}, false)
+	function showUploadedItem (source) {
+		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy'}, true)
 	}   
 
 	if (window.FormData) {
@@ -18,12 +18,12 @@ $(document).ready(function() {
  		if(len > 0){
 			for ( ; i < len; i++ ) {
 				file = this.files[i];
-		
+				imgName = file.name;
 				if (!!file.type.match(/image.*/)) {
 					if ( window.FileReader ) {
 						reader = new FileReader();
 						reader.onloadend = function (e) {
-							showUploadedItem(e.target.result, file.name);
+							showUploadedItem(e.target.result);
 						};
 						reader.readAsDataURL(file);
 					}
@@ -42,7 +42,8 @@ $(document).ready(function() {
 					processData: false,
 					contentType: false,
 					success: function (data) {
-						addImg({ 'src': data.filtered, 'id': data.filtered.substring(26), 'class': 'img-instapy'});
+						//addImg({ 'src': data.filtered, 'id': data.filtered.substring(26), 'class': 'img-instapy'});
+						addFilters(data.available_filters);
 						hideLoading();
 					},
 					error: function (data) {
@@ -59,7 +60,7 @@ $(document).ready(function() {
 		newImg();
 	});
 	
-	// Toggle between original and filtered image
+	// Change image
 	$('#img-list').on('click', '.img-instapy', function(){
 		changeImg($(this));
 	});
@@ -67,11 +68,9 @@ $(document).ready(function() {
 	// Adds image to img list and if 'show' == true shows image
 	function addImg(props, show)
 	{
-		show = (typeof show === "undefined") ? true : show;
+		show = (typeof show === "undefined") ? false : show;
 		
-		$('#img-toggle').removeClass('hide');
 		$('#img-new').removeClass('hide');
-		$('#img-toggle').prop('disabled', false);
 		$('#img-new').prop('disabled', false);
 		
 		$('<img />', props).appendTo('#img-list');
@@ -81,6 +80,23 @@ $(document).ready(function() {
 			$('<img />', props).appendTo('#img-container');
 		}
 		$('#img-container').fadeIn();
+	}
+	
+	function addFilters(filterList)
+	{
+		for(var i = 0; i < filterList.length; i++){
+			filter = filterList[i];
+			$.ajax({
+				url: '/filter/' + imgName + '/' + filter,
+				type: 'GET',
+				success: function (data) {
+					addImg({ 'src': data, 'id': data.substring(26), 'class': 'img-instapy'});
+				},
+				error: function (data) {
+					$('#img-container').html('Server Error');
+				}
+			});
+		}
 	}
 	
 	function newImg()
