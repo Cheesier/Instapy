@@ -19,7 +19,8 @@ def upload():
         open('../../public/tmp/' + fn, 'wb').write(data.file.read())
         
         return {'org': 'http://localhost:8080/tmp/'+fn,
-                'filtered': do_filter(fn, filtername)}
+                'filtered': do_filter(fn, filtername),
+                'available_filters': filter_list.keys()}
     return "Something went wrong"
 
 
@@ -34,4 +35,4 @@ def do_filter(filename="girl.jpg", filtername="blur"):
 def send_static(filename='index.html'):
     return static_file(filename, root='../../public')
 
-run(host='127.0.0.1', port=8080, reloader=True, debug=True)
+run(host='0.0.0.0', port=8080, reloader=True, debug=True, server='paste')

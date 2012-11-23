@@ -11,8 +11,8 @@ from Filters.CFilterContrast import CFilterContrast
 from Filters.CFilterPlainBorder import CFilterPlainBorder
 from Filters.CFilterInvert import CFilterInvert
 
-global filters
-filters = {
+global filter_list
+filter_list = {
            'blur': CFilterBlur(),
            'prime': CFilterPrime(),
            'vignette': CFilterVignette(),
@@ -41,11 +41,11 @@ class CImageInstagram:
         elif isinstance(aCFilter, CFilter):
             self.im_copy = aCFilter.applyFilter(self.im_copy)
         elif isinstance(aCFilter, list) and len(aCFilter) > 0 and isinstance(aCFilter[0], str):
-            self.applyFilter(filters[aCFilter[0]])
+            self.applyFilter(filter_list[aCFilter[0]])
             self.applyFilter(aCFilter[1:])
         elif isinstance(aCFilter, str):
-            if aCFilter in filters:
-                self.im_copy = filters[aCFilter].applyFilter(self.im_copy)
+            if aCFilter in filter_list:
+                self.im_copy = filter_list[aCFilter].applyFilter(self.im_copy)
     def isChanged(self):
         return self.im_copy != self.im
     def resetFilter(self):
