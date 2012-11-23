@@ -16,6 +16,13 @@ body{
 }
 #img-container .img-instapy{
 	width: 100%;
+	height: auto;
+}
+#img-list{
+	height: 80px;
+}
+.img-instapy{
+	height: 100%;
 }
 /* Custom container */
 .container-narrow {

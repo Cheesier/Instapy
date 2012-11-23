@@ -1,9 +1,9 @@
 $(document).ready(function() {
 	hideLoading();
-	var formdata = false;
+	var formdata = false, available = {};
 
-	function showUploadedItem (source) {
-		addImg({ 'src': source, 'id': 'img-original', 'class': 'img-instapy'}, false)
+	function showUploadedItem (source, name) {
+		addImg({ 'src': source, 'id': name, 'class': 'img-instapy'}, false)
 	}   
 
 	if (window.FormData) {
@@ -22,8 +22,8 @@ $(document).ready(function() {
 				if (!!file.type.match(/image.*/)) {
 					if ( window.FileReader ) {
 						reader = new FileReader();
-						reader.onloadend = function (e) { 
-							showUploadedItem(e.target.result, file.fileName);
+						reader.onloadend = function (e) {
+							showUploadedItem(e.target.result, file.name);
 						};
 						reader.readAsDataURL(file);
 					}
@@ -42,11 +42,12 @@ $(document).ready(function() {
 					processData: false,
 					contentType: false,
 					success: function (data) {
-						addImg({ 'src': data.filtered, 'id': 'img-filtered', 'class': 'img-instapy'});
+						addImg({ 'src': data.filtered, 'id': data.filtered.substring(26), 'class': 'img-instapy'});
 						hideLoading();
 					},
 					error: function (data) {
-						$('#img-container').html('Server Error'); 
+						$('#img-container').html('Server Error');
+						hideLoading();
 					}
 				});
 			}
@@ -59,8 +60,8 @@ $(document).ready(function() {
 	});
 	
 	// Toggle between original and filtered image
-	$('#img-toggle').on('click', function(){
-		toggleImg();
+	$('#img-list').on('click', '.img-instapy', function(){
+		changeImg($(this));
 	});
 	
 	// Adds image to img list and if 'show' == true shows image
@@ -76,6 +77,7 @@ $(document).ready(function() {
 		$('<img />', props).appendTo('#img-list');
 		if (show){
 			$('#img-container').empty();
+			delete props['id'];
 			$('<img />', props).appendTo('#img-container');
 		}
 		$('#img-container').fadeIn();
@@ -90,19 +92,10 @@ $(document).ready(function() {
 		$('#upload-form').slideDown('slow');
 	}
 	
-	function toggleImg()
+	function changeImg(img)
 	{
-		var curImg = $('#img-container .img-instapy');
-		$('#img-container').html('');
-		if (curImg.prop('id') == 'img-filtered'){
-			$('#img-list #img-original').clone().appendTo("#img-container");
-			$('#img-toggle').text('Show filtered');
-		}else if (curImg.prop('id') == 'img-original'){
-			$('#img-list #img-filtered').clone().appendTo("#img-container");
-			$('#img-toggle').text('Show original');
-		}else{
-			$('#img-container').html('Error when toggle image.');
-		}
+		$('#img-container').empty();
+		var new_img = img.clone().removeProp('id').appendTo("#img-container");
 	}
 	
 	function showLoading()
