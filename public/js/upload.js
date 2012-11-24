@@ -91,6 +91,7 @@ $(document).ready(function() {
 			delete props['id'];
 			$('<img />', props).appendTo('#img-container');
 		}
+		$('#img-list').fadeIn();
 		$('#img-container').fadeIn();
 	}
 	
@@ -115,6 +116,7 @@ $(document).ready(function() {
 	{
 		$('#img-new').prop('disabled', true);
 		$('#img-list').empty();
+		$('#img-list').fadeOut();
 		$('#img-container').fadeOut();
 		$('.jumbotron').slideDown('slow');
 	}

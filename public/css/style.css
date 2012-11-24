@@ -29,6 +29,7 @@ body{
 	height: auto;
 }
 #img-list{
+	display: none;
 	margin-top: 5px;
 	height: 80px;
 	overflow-x:auto;
