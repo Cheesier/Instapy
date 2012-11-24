@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var formdata = false, imgName;
 
 	function showUploadedItem (source) {
-		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy', 'data-filter-name': 'Original'}, true)
+		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy img-active', 'data-filter-name': 'Original'}, true)
 	}   
 
 	if (window.FormData) {
@@ -126,7 +126,9 @@ $(document).ready(function() {
 	function changeImg(img)
 	{
 		$('#img-container').empty();
-		var new_img = img.clone().removeProp('id').appendTo("#img-container");
+		$('.img-instapy').removeClass('img-active')
+		img.addClass('img-active');
+		var new_img = img.clone().removeProp('id').removeClass('img-active').appendTo("#img-container");
 	}
 	
 	function showLoading()

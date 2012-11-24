@@ -11,6 +11,9 @@ body{
 	margin-top: -24px;
 	margin-left: -24px;
 }
+.img-active{
+	border: 2px solid #ace0f9;
+}
 .img-label{
 	position: absolute;
 	bottom: 0px;
@@ -31,7 +34,7 @@ body{
 #img-list{
 	display: none;
 	margin-top: 5px;
-	height: 80px;
+	height: 84px;
 	overflow-x:auto;
 	white-space: nowrap;
 	padding: 5px;
