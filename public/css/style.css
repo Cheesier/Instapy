@@ -1,5 +1,5 @@
 body{
-	margin-top: 40px;
+	margin-top: 50px;
 }
 .hide{
 	display: none;
@@ -11,6 +11,16 @@ body{
 	margin-top: -24px;
 	margin-left: -24px;
 }
+.img-label{
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	background-color: rgba(0,0,0,0.41);
+	color: #ffffff;
+	margin: 0px;
+	text-align: center;
+}
 #img-container{
 	width: 600px;
 }
@@ -21,8 +31,18 @@ body{
 #img-list{
 	margin-top: 5px;
 	height: 80px;
-	overflow:auto;
+	overflow-x:auto;
 	white-space: nowrap;
+	padding: 5px;
+	background-color: #3a3a3a;
+}
+#img-list div{
+	position: relative;
+	display: inline-block;
+}
+#img-list div img{
+	margin-right: 5px;
+	width: 80px;
 }
 .img-instapy{
 	height: 100%;
@@ -98,9 +118,6 @@ body{
 	}
 	.jumbotron {
 		margin: 10px 0;
-	}
-	.jumbotron h1 {
-		display: none;
 	}
 	.hidden-phone{
 		display: none;

@@ -1,9 +1,12 @@
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 $(document).ready(function() {
 	hideLoading();
 	var formdata = false, imgName;
 
 	function showUploadedItem (source) {
-		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy'}, true)
+		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy', 'data-filter-name': 'Original'}, true)
 	}   
 
 	if (window.FormData) {
@@ -12,7 +15,7 @@ $(document).ready(function() {
 	}
 	
  	$('input').on('change', function(){
- 		$('#upload-form').slideUp('slow');
+ 		$('.jumbotron').slideUp('slow');
  		showLoading();
  		var i = 0, len = this.files.length, img, reader, file;
  		if(len > 0){
@@ -73,7 +76,16 @@ $(document).ready(function() {
 		$('#img-new').removeClass('hide');
 		$('#img-new').prop('disabled', false);
 		
-		$('<img />', props).appendTo('#img-list');
+		var labelText = props['data-filter-name'];
+		
+		var div = $('<div />', {'class': 'img-thumbnail'});
+		var img = $('<img />', props);
+		var label = $('<p />', {'class': 'img-label'}).text(labelText.capitalize());
+		
+		img.appendTo(div);
+		label.appendTo(div);
+		div.appendTo('#img-list');
+		console.log(div);
 		if (show){
 			$('#img-container').empty();
 			delete props['id'];
@@ -90,7 +102,7 @@ $(document).ready(function() {
 				url: '/filter/' + imgName + '/' + filter,
 				type: 'GET',
 				success: function (data) {
-					addImg({ 'src': data, 'id': data.substring(26), 'class': 'img-instapy'});
+					addImg({ 'src': data.src, 'id': data.src.substring(26), 'class': 'img-instapy', 'data-filter-name': data.filter});
 				},
 				error: function (data) {
 					$('#img-container').html('Server Error');
@@ -101,11 +113,10 @@ $(document).ready(function() {
 	
 	function newImg()
 	{
-		$('#img-toggle').prop('disabled', true);
 		$('#img-new').prop('disabled', true);
 		$('#img-list').empty();
 		$('#img-container').fadeOut();
-		$('#upload-form').slideDown('slow');
+		$('.jumbotron').slideDown('slow');
 	}
 	
 	function changeImg(img)
