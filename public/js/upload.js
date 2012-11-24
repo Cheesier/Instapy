@@ -85,7 +85,7 @@ $(document).ready(function() {
 		img.appendTo(div);
 		label.appendTo(div);
 		div.appendTo('#img-list');
-		console.log(div);
+		
 		if (show){
 			$('#img-container').empty();
 			delete props['id'];
@@ -104,6 +104,7 @@ $(document).ready(function() {
 				type: 'GET',
 				success: function (data) {
 					addImg({ 'src': data.src, 'id': data.src.substring(26), 'class': 'img-instapy', 'data-filter-name': data.filter});
+					checkLoading(filterList.length);
 				},
 				error: function (data) {
 					$('#img-container').html('Server Error');
@@ -119,6 +120,7 @@ $(document).ready(function() {
 		$('#img-list').fadeOut();
 		$('#img-container').fadeOut();
 		$('.jumbotron').slideDown('slow');
+		$('<img />', {'src': 'img/loading.gif', 'class': 'loading'}).appendTo('#img-list');
 	}
 	
 	function changeImg(img)
@@ -134,5 +136,12 @@ $(document).ready(function() {
 	function hideLoading()
 	{
 		$('#loading-gif').hide();
+	}
+	function checkLoading(filtersLength)
+	{
+		console.log($('#img-list').length);
+		if($('#img-list div').length == filtersLength){
+			$('#img-list .loading').fadeOut();
+		}
 	}
 });
