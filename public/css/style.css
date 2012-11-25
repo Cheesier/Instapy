@@ -54,7 +54,7 @@ body{
 /* Custom container */
 .container-narrow {
 	margin: 0 auto;
-	max-width: 700px;
+	max-width: 600px;
 }
 .container-narrow > hr {
 	margin: 30px 0;
@@ -92,9 +92,6 @@ body{
   font-size: 23px;
   direction: ltr;
   cursor: pointer;
-}
-.mobile-toolbar{
-	display: none;
 }
 
 /* Css for mobile */

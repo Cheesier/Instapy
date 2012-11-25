@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var formdata = false, imgName;
 
 	function showUploadedItem (source) {
-		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy img-active', 'data-filter-name': 'Original'}, true)
+		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy', 'data-filter-name': 'Original'}, true)
 	}   
 
 	if (window.FormData) {
