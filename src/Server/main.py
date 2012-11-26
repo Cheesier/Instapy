@@ -18,7 +18,7 @@ def upload():
         fn = path.basename(data.filename)
         open('../../public/tmp/' + fn, 'wb').write(data.file.read())
         
-        return {'org': 'http://localhost:8080/tmp/'+fn,
+        return {'org': '/tmp/'+fn,
                 'filtered': do_filter(fn, filtername),
                 'available_filters': filter_list.keys()}
     return "Something went wrong"

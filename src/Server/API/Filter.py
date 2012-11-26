@@ -9,7 +9,7 @@ class Filter(BaseAPI):
         
         # check if processed already, in that case just toss the url back
         if os.path.exists(path + filtername + "_" + filename):
-            return {'src': 'http://localhost:8080/tmp/' + filtername + "_" + filename,
+            return {'src': '/tmp/' + filtername + "_" + filename,
                     'filter': filtername}
         
         # is the said file actually uploaded?
@@ -27,7 +27,7 @@ class Filter(BaseAPI):
             return self.retError("No filter with that name, consult documentation.")
     
     def getUrl(self, filename, data):
-        return "http://localhost:8080/tmp/" + data + "_" + filename
+        return "/tmp/" + data + "_" + filename
     
     def retError(self, msg):
         return {'Error': msg}
