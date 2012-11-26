@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var formdata = false, imgName;
 
 	function showUploadedItem (source) {
-		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy', 'data-filter-name': 'Original'}, true)
+		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy img-active', 'data-filter-name': 'Original'}, true)
 	}   
 
 	if (window.FormData) {
@@ -68,6 +68,18 @@ $(document).ready(function() {
 		changeImg($(this));
 	});
 	
+	// Change image on key
+	$(document).keydown(function(e){
+		if(!$('#img-container').is(':empty')){
+		    if (e.keyCode == 37){
+		    	getPrevImg();
+		    }
+		    if (e.keyCode == 39){
+		    	getNextImg();
+		    }
+		}
+	});
+	
 	// Adds image to img list and if 'show' == true shows image
 	function addImg(props, show)
 	{
@@ -89,6 +101,8 @@ $(document).ready(function() {
 		if (show){
 			$('#img-container').empty();
 			delete props['id'];
+			delete props['class'];
+			props['class'] = 'img-instapy';
 			$('<img />', props).appendTo('#img-container');
 		}
 		$('#img-list').fadeIn();
@@ -122,7 +136,14 @@ $(document).ready(function() {
 		$('.jumbotron').slideDown('slow');
 		$('<img />', {'src': 'img/loading.gif', 'class': 'loading'}).appendTo('#img-list');
 	}
-	
+	function getNextImg()
+	{
+		changeImg($('.img-active').parent().next().children('.img-instapy'));
+	}
+	function getPrevImg()
+	{
+		changeImg($('.img-active').parent().prev().children('.img-instapy'));
+	}
 	function changeImg(img)
 	{
 		$('#img-container').empty();
@@ -130,7 +151,6 @@ $(document).ready(function() {
 		img.addClass('img-active');
 		var new_img = img.clone().removeProp('id').removeClass('img-active').appendTo("#img-container");
 	}
-	
 	function showLoading()
 	{
 		$('#loading-gif').show();
@@ -141,7 +161,6 @@ $(document).ready(function() {
 	}
 	function checkLoading(filtersLength)
 	{
-		console.log($('#img-list').length);
 		if($('#img-list div').length == filtersLength){
 			$('#img-list .loading').fadeOut();
 		}
