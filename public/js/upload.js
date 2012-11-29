@@ -64,8 +64,9 @@ $(document).ready(function() {
 	});
 	
 	// Change image
-	$('#img-list').on('click', '.img-instapy', function(){
-		changeImg($(this));
+	$('#img-list').on('click', 'div', function(){
+		var img = $(this).children('.img-instapy');
+		changeImg(img);
 	});
 	
 	// Change image on key
@@ -138,11 +139,17 @@ $(document).ready(function() {
 	}
 	function getNextImg()
 	{
-		changeImg($('.img-active').parent().next().children('.img-instapy'));
+		var newImg = $('.img-active').parent().next().children('.img-instapy');
+		if (newImg.length == 1){
+			changeImg(newImg);
+		}
 	}
 	function getPrevImg()
 	{
-		changeImg($('.img-active').parent().prev().children('.img-instapy'));
+		var newImg = $('.img-active').parent().prev().children('.img-instapy');
+		if (newImg.length == 1){
+			changeImg(newImg);
+		}
 	}
 	function changeImg(img)
 	{

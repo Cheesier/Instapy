@@ -1,5 +1,12 @@
 body{
 	margin-top: 50px;
+	background-color: #232323;
+}
+p{
+	color: #a4a4a4;
+}
+hr{
+	color: #a4a4a4;
 }
 .hide{
 	display: none;
@@ -10,6 +17,9 @@ body{
 	left: 50%;
 	margin-top: -24px;
 	margin-left: -24px;
+}
+.loading{
+	width: 48px;
 }
 .img-active{
 	border: 2px solid #ace0f9;
@@ -34,7 +44,6 @@ body{
 #img-list{
 	display: none;
 	margin-top: 5px;
-	height: 89px;
 	overflow-x:auto;
 	white-space: nowrap;
 	padding: 5px;
@@ -43,6 +52,7 @@ body{
 #img-list div{
 	position: relative;
 	display: inline-block;
+	cursor: pointer;
 }
 #img-list div img{
 	margin-right: 5px;
@@ -82,7 +92,8 @@ body{
 }
 .fileinput-button input {
   position: absolute;
-    height: 52px;
+  height: 52px;
+  width: 100%;
   top: 0;
   right: 0;
   margin: 0;
