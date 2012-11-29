@@ -25,7 +25,7 @@ body{
 	text-align: center;
 }
 #img-container{
-	width: 600px;
+	width: 900px;
 }
 #img-container .img-instapy{
 	width: 100%;
@@ -34,7 +34,7 @@ body{
 #img-list{
 	display: none;
 	margin-top: 5px;
-	height: 84px;
+	height: 89px;
 	overflow-x:auto;
 	white-space: nowrap;
 	padding: 5px;
@@ -54,7 +54,7 @@ body{
 /* Custom container */
 .container-narrow {
 	margin: 0 auto;
-	max-width: 600px;
+	max-width: 900px;
 }
 .container-narrow > hr {
 	margin: 30px 0;
@@ -95,7 +95,7 @@ body{
 }
 
 /* Css for mobile */
-@media (max-width: 767px) {
+@media (max-width: 900px) {
 	body {
 		padding-left: 5px;
 		padding-right: 5px;
