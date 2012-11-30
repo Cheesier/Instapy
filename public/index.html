@@ -14,25 +14,30 @@
 </head>
 <body>
 	<div id="main" class="container-narrow">
-		<div id="toolbar" class="mobile-toolbar">
-			<a href="/" class="app-logo"><i class="icon-home icon-white"></i> Instapy</a>
-			<div class="btn-group">
-				<button id="img-new" class="btn hide"><i class="icon-plus"></i> Pick new image</button>
+		<div class="row-fluid">
+			<div class="span12">
+				<div id="toolbar" class="mobile-toolbar">
+					<a href="/" class="app-logo">Instapy</a>
+					<div class="btn-group pull-right">
+						<button id="img-new" class="btn hide"><i class="icon-plus"></i> Pick new image</button>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div class="jumbotron">
-			<h1>Instapy</h1>
-			<form id="upload-form" method="post" enctype="multipart/form-data"  action="/upload">
-				<span class="btn btn-success btn-block fileinput-button">
-					<i class="icon-plus icon-white"></i>
-                	<span>Pick Image</span>
-                	<input type="file" name="img" id="img" class="input" multiple />
-                </span>
-	    		<button type="submit" id="btn-submit">Upload Files!</button>
-	    	</form>
+		<div class="row-fluid">
+			<div class="span12">
+				<form id="upload-form" method="post" enctype="multipart/form-data"  action="/upload">
+					<span class="btn btn-success btn-block btn-large fileinput-button">
+						<i class="icon-plus icon-white"></i>
+		            	<span>Pick Image</span>
+		            	<input type="file" name="img" id="img" class="input" multiple />
+		            </span>
+		    		<button type="submit" id="btn-submit" class="btn btn-large">Upload Files!</button>
+		    	</form>
+				<div id="img-list"><img src="img/loading.gif" class="loading"></div>
+				<div id="img-container"></div>
+			</div>
 		</div>
-		<div id="img-list"><img src="img/loading.gif" class="loading"></div>
-		<div id="img-container"></div>
 	  	<br>
 		<hr>
 		<div class="footer">

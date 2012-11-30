@@ -1,5 +1,5 @@
 body{
-	margin-top: 50px;
+	margin-top: 5px;
 	background-color: #232323;
 }
 p{
@@ -10,6 +10,11 @@ hr{
 }
 .hide{
 	display: none;
+}
+.instapy-text{
+	font-size: 72px;
+	line-height: 1;
+	margin: 30px 0;
 }
 .centered {
 	position: fixed;
@@ -58,6 +63,12 @@ hr{
 	margin-right: 5px;
 	width: 80px;
 }
+.mobile-toolbar{
+	width: 100%;
+	z-index: 3000;
+	height: 80px;
+	padding: 20px;
+}
 .img-instapy{
 	height: 100%;
 }
@@ -104,12 +115,31 @@ hr{
   direction: ltr;
   cursor: pointer;
 }
+.app-logo{
+	text-decoration: none;
+	font-size: 72px;
+	margin: 5px 5px 5px 5px;
+	color: #3d3d3d;
+	-webkit-transition: all .25s ease-in;  
+	-moz-transition: all .25s ease-in;  
+	-o-transition: all .25s ease-in;  
+	transition: all .25s ease-in; 
+}
+.app-logo:hover{
+	text-decoration: none;
+}
+#img-new{
+	margin-right: 10px;
+}
 
 /* Css for mobile */
 @media (max-width: 900px) {
 	body {
 		padding-left: 5px;
 		padding-right: 5px;
+	}
+	.app-logo{
+		font-size: 42px;
 	}
 	.mobile-toolbar{
 		position: fixed;

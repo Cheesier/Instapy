@@ -15,7 +15,7 @@ $(document).ready(function() {
 	}
 	
  	$('input').on('change', function(){
- 		$('.jumbotron').slideUp('slow');
+ 		$('#upload-form').slideUp('slow');
  		showLoading();
  		var i = 0, len = this.files.length, img, reader, file;
  		if(len > 0){
@@ -134,7 +134,7 @@ $(document).ready(function() {
 		$('#img-list').empty();
 		$('#img-list').fadeOut();
 		$('#img-container').fadeOut();
-		$('.jumbotron').slideDown('slow');
+		$('#upload-form').slideDown('slow');
 		$('<img />', {'src': 'img/loading.gif', 'class': 'loading'}).appendTo('#img-list');
 	}
 	function getNextImg()
