@@ -4,6 +4,7 @@ from API.Filter import Filter
 from CImageInstagram import *
 from os import path
 import json
+import Lib
 
 APIs = {'upload': Upload(),
         'filter': Filter(),
