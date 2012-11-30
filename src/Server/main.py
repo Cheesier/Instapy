@@ -21,7 +21,7 @@ def upload():
         return {'org': '/tmp/'+fn,
                 'filtered': do_filter(fn, filtername),
                 'available_filters': filter_list.keys()}
-    return "Something went wrong"
+    return {'error':"Something went wrong"}
 
 
 @route('/filter')
