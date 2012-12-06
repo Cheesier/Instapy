@@ -18,7 +18,6 @@ class CFilterPrime(CFilter):
         prime = 0
         
         n = 0
-        p = 1
         #for x in range(width):
             #for y in range(height):
         for pixel in pixels:
@@ -31,13 +30,11 @@ class CFilterPrime(CFilter):
                 r*= int(self.multiply[0])
                 g*= int(self.multiply[1])
                 b*= int(self.multiply[2])
-                p+=1
                 prime += 1
             
             new_pixel = (r,g,b)
             new_image_list.append(new_pixel)
-            n+=1
+            n += 1
                 
         new_image.putdata(new_image_list)
-        print "primes:", n-p, ", out of", n , "pixels"
         return new_image

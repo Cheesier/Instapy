@@ -25,20 +25,15 @@ class CFilterVignette(CFilter):
                 
                 dist = Lib.distanceFromPoint(x, y, width/2, height/2) / math.sqrt((width/2)**2 + (height/2)**2)
                 
-                r = pixels[y][x][0]*(self.amount-dist)
-                g = pixels[y][x][1]*(self.amount-dist)
-                b = pixels[y][x][2]*(self.amount-dist)
+                r = int(pixels[y][x][0]*(self.amount-dist))
+                g = int(pixels[y][x][1]*(self.amount-dist))
+                b = int(pixels[y][x][2]*(self.amount-dist))
                 
-                r = int(r**hardness)
-                g = int(g**hardness)
-                b = int(b**hardness)
+                #r = int(r**hardness)
+                #g = int(g**hardness)
+                #b = int(b**hardness)
                 
-                
-                # human eye is bad at seeing red and blue, 
-                # so we de-emphasize them
-                #v = int(r + g + b);
-                new_pixel = (r,g,b)
-                new_image_list.append(new_pixel)
+                new_image_list.append((r,g,b))
                 
         new_image.putdata(new_image_list)
         return new_image
