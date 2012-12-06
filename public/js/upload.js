@@ -113,7 +113,7 @@ $(document).ready(function() {
 	
 	function addFilters(filterList, path)
 	{
-		var imgOrg = data.org.split("/");
+		var imgOrg = path.split("/");
 		imgOrg = imgOrg[imgOrg.length - 1];
 		
 		for(var i = 0; i < filterList.length; i++){
@@ -122,7 +122,7 @@ $(document).ready(function() {
 				url: '/filter/' + imgOrg + '/' + filter,
 				type: 'GET',
 				success: function (data) {
-					addImg({ 'src': data.src, 'id': data.src.substring(26), 'class': 'img-instapy', 'data-filter-name': data.filter});
+					addImg({ 'src': data.src, 'id': imgOrg, 'class': 'img-instapy', 'data-filter-name': data.filter});
 					checkLoading(filterList.length);
 				},
 				error: function (data) {
