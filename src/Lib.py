@@ -51,4 +51,4 @@ def genPrimes(n):
         m=2*i+3
     return [2]+[x for x in s if x]
 
-primes = genPrimes(30000000)
+primes = genPrimes(2000000)
