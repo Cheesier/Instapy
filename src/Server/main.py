@@ -29,7 +29,7 @@ def upload():
         return {'org': '/tmp/'+hashName + fileExtension,
                 'available_filters': filter_list.keys(),
                 'hash': hashName}
-    return {'error':"Something went wrong"}
+    return {'error':"Did not receive a file"}
 
 @route('/filter')
 @route('/filter/<filename>')

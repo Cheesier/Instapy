@@ -2,7 +2,7 @@ import Image
 from CFilter import *
 
 class CFilterColor(CFilter):
-    def __init__(self, amount=(1,1,1)):
+    def __init__(self, amount=(217/255.0,137/255.0,0/255.0)):
         self.amount = amount
     def applyFilter(self, aImage):
         # intialize a new filtered image
