@@ -1,8 +1,20 @@
 import math
 import os
+import hashlib
 
 global primes
 primes = []
+
+def hashImg(fn):
+    fh = open('../../public/tmp/' + fn, 'rb')
+    m = hashlib.md5()
+    
+    while True:
+        data = fh.read(8192)
+        if not data:
+            break
+        m.update(data)
+    return m.hexdigest()
 
 def removeImg(path):
     os.remove(path)

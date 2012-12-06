@@ -5,6 +5,8 @@ from CImageInstagram import *
 from os import path
 import json
 import Lib
+import os
+import shutil
 
 APIs = {'upload': Upload(),
         'filter': Filter(),
@@ -15,15 +17,20 @@ def upload():
     data = request.files.data
     filtername = str(request.forms.filter)
     #print "data:", data
-    if data and data.file:
+    if data and data.file:        
         fn = path.basename(data.filename)
-        open('../../public/tmp/' + fn, 'wb').write(data.file.read())
+        fileName, fileExtension = os.path.splitext(fn)
         
-        return {'org': '/tmp/'+fn,
-                'filtered': do_filter(fn, filtername),
-                'available_filters': filter_list.keys()}
+        open('../../public/tmp/' + fn, 'wb').write(data.file.read())
+        hashName = Lib.hashImg(fileName+fileExtension)
+        shutil.copyfile('../../public/tmp/' + fn, '../../public/tmp/' + hashName+'.'+fileExtension)
+        #open('../../public/tmp/' + hashName + "." + fileExtension, 'wb').write(data.file.read())
+        
+        return {'org': '/tmp/'+hashName + fileExtension,
+                'filtered': do_filter(hashName+'.'+fileExtension, filtername),
+                'available_filters': filter_list.keys(),
+                'hash': hashName}
     return {'error':"Something went wrong"}
-
 
 @route('/filter')
 @route('/filter/<filename>')
