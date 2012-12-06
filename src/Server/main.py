@@ -5,11 +5,8 @@ from CImageInstagram import *
 from os import path
 import json
 import Lib
-<<<<<<< HEAD
-=======
 import os
 import shutil
->>>>>>> Changed names to a hash of the file content, to avoid conflicts in names
 
 APIs = {'upload': Upload(),
         'filter': Filter(),
