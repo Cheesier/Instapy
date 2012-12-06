@@ -46,7 +46,7 @@ $(document).ready(function() {
 					contentType: false,
 					success: function (data) {
 						//addImg({ 'src': data.filtered, 'id': data.filtered.substring(26), 'class': 'img-instapy'});
-						addFilters(data.available_filters);
+						addFilters(data.available_filters, data.org);
 						hideLoading();
 					},
 					error: function (data) {
@@ -61,6 +61,7 @@ $(document).ready(function() {
 	// Upload new image
 	$('#img-new').on('click', function(){
 		newImg();
+		hideLoading();
 	});
 	
 	// Change image
@@ -110,12 +111,15 @@ $(document).ready(function() {
 		$('#img-container').fadeIn();
 	}
 	
-	function addFilters(filterList)
+	function addFilters(filterList, data.org)
 	{
+		var imgOrg = data.org.split("/");
+		imgOrg = imgOrg[imgOrg.length - 1];
+		
 		for(var i = 0; i < filterList.length; i++){
 			filter = filterList[i];
 			$.ajax({
-				url: '/filter/' + imgName + '/' + filter,
+				url: '/filter/' + imgOrg + '/' + filter,
 				type: 'GET',
 				success: function (data) {
 					addImg({ 'src': data.src, 'id': data.src.substring(26), 'class': 'img-instapy', 'data-filter-name': data.filter});
