@@ -111,7 +111,7 @@ $(document).ready(function() {
 		$('#img-container').fadeIn();
 	}
 	
-	function addFilters(filterList, data.org)
+	function addFilters(filterList, path)
 	{
 		var imgOrg = data.org.split("/");
 		imgOrg = imgOrg[imgOrg.length - 1];
