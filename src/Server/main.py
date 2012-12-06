@@ -15,16 +15,19 @@ APIs = {'upload': Upload(),
 @route('/upload', method='POST')
 def upload():
     data = request.files.data
+    filtername = str(request.forms.filter)
+    #print "data:", data
     if data and data.file:        
         fn = path.basename(data.filename)
         fileName, fileExtension = os.path.splitext(fn)
         
         open('../../public/tmp/' + fn, 'wb').write(data.file.read())
         hashName = Lib.hashImg(fileName+fileExtension)
-        shutil.copyfile('../../public/tmp/' + fn, '../../public/tmp/' + hashName+fileExtension)
+        shutil.copyfile('../../public/tmp/' + fn, '../../public/tmp/' + hashName+'.'+fileExtension)
         #open('../../public/tmp/' + hashName + "." + fileExtension, 'wb').write(data.file.read())
         
         return {'org': '/tmp/'+hashName + fileExtension,
+                'filtered': do_filter(hashName+'.'+fileExtension, filtername),
                 'available_filters': filter_list.keys(),
                 'hash': hashName}
     return {'error':"Something went wrong"}
