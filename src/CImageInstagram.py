@@ -17,11 +17,12 @@ filter_list = {
            'prime': CFilterPrime(),
            'vignette': CFilterVignette(),
            'invert': CFilterInvert(),
-           'color': CFilterColor(),
+           'color': CFilterColor([.2,.3,.7]),
            'contrast': CFilterContrast(),
            'plainborder': CFilterPlainBorder(),
            'brigthness': CFilterBrigthness(),
            'grayscale': CFilterGrayscale(),
+           'sepia': CFilterColor(),
            }
 
 class CImageInstagram:
