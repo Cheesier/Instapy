@@ -3,7 +3,7 @@ String.prototype.capitalize = function() {
 }
 $(document).ready(function() {
 	hideLoading();
-	var formdata = false, imgName;
+	var formdata = false, imgName, slideshow = false, slideshowTimer;
 
 	function showUploadedItem (source) {
 		addImg({ 'src': source, 'id': imgName, 'class': 'img-instapy img-active', 'data-filter-name': 'Original'}, true)
@@ -50,7 +50,6 @@ $(document).ready(function() {
 						hideLoading();
 					},
 					error: function (data) {
-						$('#img-container').html('Server Error');
 						hideLoading();
 					}
 				});
@@ -64,6 +63,15 @@ $(document).ready(function() {
 		hideLoading();
 	});
 	
+	// Downlaod selected image
+	$('#img-download').on('click', function(){
+		downloadImg();
+	});
+	
+	//Start slideshow
+	$('#img-slideshow').on('click', function(){
+		toggleSlideshow();
+	});
 	// Change image
 	$('#img-list').on('click', 'div', function(){
 		var img = $(this).children('.img-instapy');
@@ -89,6 +97,10 @@ $(document).ready(function() {
 		
 		$('#img-new').removeClass('hide');
 		$('#img-new').prop('disabled', false);
+		$('#img-download').removeClass('hide');
+		$('#img-download').prop('disabled', false);
+		$('#img-slideshow').removeClass('hide');
+		$('#img-slideshow').prop('disabled', false);
 		
 		var labelText = props['data-filter-name'];
 		
@@ -126,7 +138,8 @@ $(document).ready(function() {
 					checkLoading(filterList.length);
 				},
 				error: function (data) {
-					$('#img-container').html('Server Error');
+					console.log(data);
+					checkLoading(filterList.length);
 				}
 			});
 		}
@@ -135,6 +148,8 @@ $(document).ready(function() {
 	function newImg()
 	{
 		$('#img-new').prop('disabled', true);
+		$('#img-download').prop('disabled', true);
+		$('#img-slideshow').prop('disabled', true);
 		$('#img-list').empty();
 		$('#img-list').fadeOut();
 		$('#img-container').fadeOut();
@@ -146,6 +161,8 @@ $(document).ready(function() {
 		var newImg = $('.img-active').parent().next().children('.img-instapy');
 		if (newImg.length == 1){
 			changeImg(newImg);
+		}else{
+			changeImg($('#img-list div:first').children('.img-instapy'));
 		}
 	}
 	function getPrevImg()
@@ -153,6 +170,8 @@ $(document).ready(function() {
 		var newImg = $('.img-active').parent().prev().children('.img-instapy');
 		if (newImg.length == 1){
 			changeImg(newImg);
+		}else{
+			changeImg($('#img-list div:last').children('.img-instapy'));
 		}
 	}
 	function changeImg(img)
@@ -161,6 +180,27 @@ $(document).ready(function() {
 		$('.img-instapy').removeClass('img-active')
 		img.addClass('img-active');
 		var new_img = img.clone().removeProp('id').removeClass('img-active').appendTo("#img-container");
+	}
+	function toggleSlideshow()
+	{
+		if(!slideshow){
+			slideshow = true;
+			slideshowTimer = setInterval(function(){
+				getNextImg();
+			},1000);
+			$('#img-slideshow i').removeClass('icon-play');
+			$('#img-slideshow i').addClass('icon-pause');
+		}else{
+			slideshow = false;
+			clearInterval(slideshowTimer);
+			$('#img-slideshow i').removeClass('icon-pause');
+			$('#img-slideshow i').addClass('icon-play');
+		}
+		
+	}
+	function downloadImg()
+	{
+		
 	}
 	function showLoading()
 	{
