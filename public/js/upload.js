@@ -95,12 +95,10 @@ $(document).ready(function() {
 	{
 		show = (typeof show === "undefined") ? false : show;
 		
-		$('#img-new').removeClass('hide');
-		$('#img-new').prop('disabled', false);
-		$('#img-download').removeClass('hide');
-		$('#img-download').prop('disabled', false);
-		$('#img-slideshow').removeClass('hide');
-		$('#img-slideshow').prop('disabled', false);
+		$('.buttons button').each(function(){
+			$(this).removeClass('hide');
+			$(this).prop('disabled', false);
+		});
 		
 		var labelText = props['data-filter-name'];
 		
@@ -147,9 +145,9 @@ $(document).ready(function() {
 	
 	function newImg()
 	{
-		$('#img-new').prop('disabled', true);
-		$('#img-download').prop('disabled', true);
-		$('#img-slideshow').prop('disabled', true);
+		$('.buttons button').each(function(){
+			$(this).prop('disabled', true);
+		});
 		$('#img-list').empty();
 		$('#img-list').fadeOut();
 		$('#img-container').fadeOut();
@@ -187,7 +185,7 @@ $(document).ready(function() {
 			slideshow = true;
 			slideshowTimer = setInterval(function(){
 				getNextImg();
-			},1000);
+			},3000);
 			$('#img-slideshow i').removeClass('icon-play');
 			$('#img-slideshow i').addClass('icon-pause');
 		}else{
