@@ -186,13 +186,11 @@ $(document).ready(function() {
 			slideshowTimer = setInterval(function(){
 				getNextImg();
 			},3000);
-			$('#img-slideshow i').removeClass('icon-play');
-			$('#img-slideshow i').addClass('icon-pause');
+			$('#img-slideshow').html('<i class="icon-pause"></i> Pause');
 		}else{
 			slideshow = false;
 			clearInterval(slideshowTimer);
-			$('#img-slideshow i').removeClass('icon-pause');
-			$('#img-slideshow i').addClass('icon-play');
+			$('#img-slideshow').html('<i class="icon-play"></i> Play');
 		}
 		
 	}
