@@ -42,4 +42,4 @@ def do_filter(filename="girl.jpg", filtername="blur"):
 def send_static(filename='index.html'):
     return static_file(filename, root='../../public')
 
-run(host='0.0.0.0', port=8080, reloader=True, debug=True, server='paste')
+run(host='0.0.0.0', port=8181, reloader=True, debug=True, server='paste')
