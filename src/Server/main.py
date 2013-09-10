@@ -12,6 +12,8 @@ APIs = {'upload': Upload(),
         'filter': Filter(),
         }
 
+PUBLIC_PATH = '../../public/'
+
 @route('/upload', method='POST')
 def upload():
     data = request.files.data
@@ -21,9 +23,9 @@ def upload():
         fn = path.basename(data.filename)
         fileName, fileExtension = os.path.splitext(fn)
         
-        open('../../public/tmp/' + fn, 'wb').write(data.file.read())
+        open(PUBLIC_PATH + 'tmp/' + fn, 'wb').write(data.file.read())
         hashName = Lib.hashImg(fileName+fileExtension)
-        shutil.copyfile('../../public/tmp/' + fn, '../../public/tmp/' + hashName+fileExtension)
+        shutil.copyfile(PUBLIC_PATH + 'tmp/' + fn, PUBLIC_PATH + 'tmp/' + hashName+fileExtension)
         #open('../../public/tmp/' + hashName + "." + fileExtension, 'wb').write(data.file.read())
         
         return {'org': '/tmp/'+hashName + fileExtension,
@@ -40,6 +42,6 @@ def do_filter(filename="girl.jpg", filtername="blur"):
 @route('/')
 @route('/<filename:path>')
 def send_static(filename='index.html'):
-    return static_file(filename, root='../../public')
+    return static_file(filename, root=PUBLIC_PATH)
 
 run(host='0.0.0.0', port=8181, reloader=True, server='paste')
